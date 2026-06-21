@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: #00ff9d;
+    font-family: "Courier New", monospace;
+    overflow-x: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Fond Matrix --- */
+.matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 157, 0.05) 0px,
+        rgba(0, 255, 157, 0.05) 2px,
+        transparent 3px,
+        transparent 6px
+    );
+    opacity: 0.15;
+    animation: matrixMove 8s linear infinite;
+    z-index: 0;
+}
+
+@keyframes matrixMove {
+    from { background-position-y: 0; }
+    to { background-position-y: 200px; }
+}
+
+/* Scanlines */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.03) 2px,
+        transparent 3px,
+        transparent 4px
+    );
+    z-index: 3;
+}
+
+/* Titre */
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+/* Formulaire */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    animation: fadeIn 1s ease forwards;
+}
+
+.field {
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0, 255, 157, 0.05);
+    border: 2px solid #00ff9d;
+    color: #00ff9d;
+    font-family: "Courier New", monospace;
+    font-size: 1rem;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    box-shadow: 0 0 15px #00ff9d;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* Bouton envoyer */
+.send-btn {
+    padding: 12px 25px;
+    background: transparent;
+    border: 2px solid #00ff9d;
+    color: #00ff9d;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+    display: block; 
+    margin: 0px auto;
+}
+
+.send-btn:hover {
+    background: #00ff9d;
+    color: black;
+    box-shadow: 0 0 20px #00ff9d;
+    transform: scale(1.05);
+}
+
+/* Retour */
+.back {
+    display: inline-block;
+    margin-top: 40px;
+    color: #00ff9d;
+    text-decoration: none;
+    border-bottom: 1px solid #00ff9d;
+    transition: 0.3s;
+}
+
+.back:hover {
+    color: black;
+    background: #00ff9d;
+    padding: 5px 10px;
+}
+
+/* Fade-in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

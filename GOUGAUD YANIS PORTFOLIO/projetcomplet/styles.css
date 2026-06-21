@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: #00ff9d;
+    font-family: "Courier New", monospace;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    max-width: 1000px;
+}
+
+/* Scanlines */
+.scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.03) 2px,
+        transparent 3px,
+        transparent 4px
+    );
+    z-index: 10;
+}
+
+/* Texte typewriter (PLUS RAPIDE) */
+.typewriter {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #00ff9d;
+    animation: typing 1.5s steps(30) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink {
+    50% { border-color: transparent }
+}
+
+/* Ligne d'état */
+.status-line {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+}
+
+/* Chargement plus tôt */
+#loading-text {
+    opacity: 0;
+    animation: fadeIn 0.6s forwards;
+    animation-delay: 1.4s;
+}
+
+#success-text {
+    opacity: 0;
+    margin-top: 10px;
+}
+
+/* Loader plus tôt */
+.loader {
+    margin: 20px auto 30px auto;
+    border: 6px solid rgba(0, 255, 157, 0.2);
+    border-top: 6px solid #00ff9d;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    opacity: 0;
+
+    animation:
+        spin 0.6s linear infinite,
+        fadeIn 0.5s forwards;
+    animation-delay:
+        0s,
+        1.4s;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Menu */
+.menu {
+    margin-top: 15px;
+}
+
+.menu-row {
+    display: flex;
+    justify-content: center;
+}
+
+/* Boutons */
+.menu a {
+    display: inline-block;
+    margin: 15px 25px;
+    padding: 16px 35px;
+    border: 2px solid #00ff9d;
+    color: #00ff9d;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: #00ff9d;
+    color: #0a0a0a;
+    box-shadow: 0 0 20px #00ff9d;
+}
+
+/* Bouton principal */
+.main-btn {
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+    padding: 18px 45px;
+}
+
+/* Apparition du menu PLUS RAPIDE */
+.hidden {
+    opacity: 0;
+    animation: fadeInMenu 0.8s ease forwards;
+    animation-delay: 2.6s;
+}
+
+@keyframes fadeInMenu {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Disparition loader */
+.hide {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-6px); }
+}
+
+/* Succès */
+.show {
+    animation: fadeInSuccess 0.5s forwards;
+}
+
+@keyframes fadeInSuccess {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Curseur custom */
+.menu a {
+    cursor: url("data:image/svg+xml;utf8,\
+    <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'>\
+    <polygon points='0,0 32,16 0,32' fill='#00ff9d'/>\
+    </svg>") 0 16, pointer;
+}
