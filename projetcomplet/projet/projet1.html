@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet VR Médical</title>
+
+    <link rel="stylesheet" href="projet1.css">
+</head>
+<body>
+
+    <!-- Effets Matrix -->
+    <div class="matrix-bg"></div>
+    <div class="scanlines"></div>
+
+    <main class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <h1 class="title">&gt; Projet VR Médical</h1>
+            <p class="subtitle">Application Unity VR – Hôpital Émile Roux</p>
+        </header>
+
+        <!-- IMAGE PRINCIPALE -->
+        <section class="hero">
+            <img src="images/image1.webp" alt="Ambiance générale du parc en VR">
+            <p class="image-caption">
+                Vue immersive de la map Parc : travail sur l’ambiance, la végétation
+                et l’éclairage afin de créer un environnement réaliste et apaisant.
+            </p>
+        </section>
+
+        <!-- CONTENU -->
+        <section class="project-details">
+
+            <h2 class="section-title">Présentation du projet</h2>
+
+            <p>
+                Ce projet consiste en la création d’une
+                <strong>application de réalité virtuelle développée avec Unity</strong>
+                pour l’hôpital <strong>Émile Roux</strong>.
+                L’objectif est d’accompagner des patients ayant subi un
+                <strong>AVC</strong> dans leur <strong>rééducation neurologique</strong>,
+                via des exercices immersifs et progressifs.
+            </p>
+
+            <p>
+                Le développement a été réalisé par une équipe de
+                <strong>20 personnes</strong>,
+                réparties en plusieurs groupes (Ressources, UI, UX, Datas et LIV).
+                Je faisais partie du groupe <strong>Ressources</strong>.
+            </p>
+
+            <h2 class="section-title">Map Parc & interactions VR</h2>
+
+            <p>
+                J’ai été en charge de la
+                <strong>création complète de la map Parc</strong>.
+                Cet environnement propose plusieurs zones interactives
+                
+                permettant de travailler le <strong>repérage visuel</strong>
+                et le <strong>pointage d’objets</strong>.
+            </p>
+
+            <!-- GALERIE -->
+            <div class="image-grid">
+
+                <figure class="image-card">
+                    <img src="images/image2.webp" alt="Kiosque du parc en VR">
+                    <figcaption>
+                        <strong>Kiosque central</strong><br>
+                        Repère visuel principal utilisé dans les exercices VR.
+                    </figcaption>
+                </figure>
+
+                <figure class="image-card">
+                    <img src="images/image3.webp" alt="Table et aire de jeu en VR">
+                    <figcaption>
+                        <strong>Objets secondaires</strong><br>
+                        Table de pique-nique, aire de jeux et éléments de décor.
+                    </figcaption>
+                </figure>
+
+                <figure class="image-card">
+                    <img src="images/image4.webp" alt="Vue du dessus de la map Parc">
+                    <figcaption>
+                        <strong>Vue globale</strong><br>
+                        Organisation des chemins et zones interactives.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+            <p>
+                Les exercices sont divisés en
+                <strong>trois niveaux de difficulté progressifs</strong>,
+                allant d’objets très visibles à des éléments plus discrets,
+                afin d’adapter la difficulté aux capacités du patient.
+            </p>
+
+            <!-- TABLEAU OUTILS -->
+            <h2 class="section-title">Applications utilisées</h2>
+
+            <table class="tools-table">
+                <thead>
+                    <tr>
+                        <th>Application</th>
+                        <th>Utilisation dans le projet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Unity</td>
+                        <td>Développement de l’application VR, création des interactions et des scènes</td>
+                    </tr>
+                    <tr>
+                        <td>Blender</td>
+                        <td>Création et optimisation des assets 3D</td>
+                    </tr>
+                    <tr>
+                        <td>GitHub</td>
+                        <td>Travail collaboratif et gestion des versions du projet</td>
+                    </tr>
+                    <tr>
+                        <td>Unity Asset Store</td>
+                        <td>Récupération d’assets et de textures</td>
+                    </tr>
+                    <tr>
+                        <td>Sketchfab</td>
+                        <td>Complément et intégration d’assets 3D</td>
+                    </tr>
+                    <tr>
+                        <td>Jira</td>
+                        <td>Organisation du travail et suivi des tâches</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+
+        <a href="projets.html" class="back">← Retour aux projets</a>
+
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <img src="" alt="Image en plein écran">
+    </div>
+
+    <script>
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = lightbox.querySelector("img");
+
+        document.querySelectorAll(".hero img, .image-card img").forEach(img => {
+            img.addEventListener("click", () => {
+                lightboxImg.src = img.src;
+                lightbox.style.display = "flex";
+            });
+        });
+
+        lightbox.addEventListener("click", () => {
+            lightbox.style.display = "none";
+        });
+
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") {
+                lightbox.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
