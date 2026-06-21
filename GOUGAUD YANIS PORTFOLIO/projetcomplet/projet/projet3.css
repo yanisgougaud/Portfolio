@@ -1,0 +1,121 @@
+/* ------------------------------
+   BASE
+------------------------------ */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: #00ff9d;
+    font-family: "Courier New", monospace;
+    overflow-x: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* ------------------------------
+   FOND MATRIX
+------------------------------ */
+
+.matrix-bg {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 157, 0.05) 0px,
+        rgba(0, 255, 157, 0.05) 2px,
+        transparent 3px,
+        transparent 6px
+    );
+    opacity: 0.15;
+    animation: matrixMove 8s linear infinite;
+    z-index: 0;
+}
+
+@keyframes matrixMove {
+    from { background-position-y: 0; }
+    to { background-position-y: 200px; }
+}
+
+/* Scanlines */
+.scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.03) 2px,
+        transparent 3px,
+        transparent 4px
+    );
+    z-index: 3;
+}
+
+/* ------------------------------
+   TITRES
+------------------------------ */
+
+.title {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin-bottom: 30px;
+}
+
+/* ------------------------------
+   CONTENU DU PROJET
+------------------------------ */
+
+.project-details {
+    border: 2px solid #00ff9d;
+    background: rgba(0, 255, 157, 0.05);
+    padding: 20px;
+    border-radius: 6px;
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.project-details p {
+    margin: 10px 0;
+}
+
+.project-details ul {
+    margin: 10px 0 20px 20px;
+}
+
+/* ------------------------------
+   BOUTON RETOUR
+------------------------------ */
+
+.back {
+    display: inline-block;
+    margin-top: 35px;
+    color: #00ff9d;
+    text-decoration: none;
+    border-bottom: 1px solid #00ff9d;
+    padding-bottom: 2px;
+    transition: 0.25s;
+}
+
+.back:hover {
+    background: #00ff9d;
+    color: black;
+    padding: 4px 10px;
+}

@@ -1,0 +1,236 @@
+/* GLOBAL */
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: #00ff9d;
+    font-family: "Courier New", monospace;
+    overflow-x: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+/* MATRIX BACKGROUND */
+.matrix-bg {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 157, 0.05) 0px,
+        rgba(0, 255, 157, 0.05) 2px,
+        transparent 3px,
+        transparent 6px
+    );
+    opacity: 0.15;
+    animation: matrixMove 8s linear infinite;
+}
+
+@keyframes matrixMove {
+    from { background-position-y: 0; }
+    to { background-position-y: 200px; }
+}
+
+/* SCANLINES */
+.scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.03) 2px,
+        transparent 3px,
+        transparent 4px
+    );
+}
+
+/* TITLES */
+.title {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    opacity: 0.8;
+    margin-bottom: 25px;
+}
+
+/* PROJECTS */
+.projects {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.project {
+    border: 2px solid #00ff9d;
+    padding: 15px;
+    border-radius: 6px;
+    background: rgba(0, 255, 157, 0.05);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    height: 380px;
+}
+
+/* HEADER LINE */
+.header-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* NOM DU PROJET */
+.header-line span:first-child {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 4px 12px;
+    background: rgba(0, 255, 157, 0.15);
+    border: 1px solid #00ff9d;
+    border-radius: 4px;
+    text-shadow: 0 0 8px #00ff9d;
+    box-shadow: 0 0 10px #00ff9d;
+}
+
+/* SCORE */
+.header-line .status {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* FIREWALL */
+.firewall {
+    width: 100%;
+    height: 6px;
+    background: #00ff9d;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+/* GAME AREA */
+.game-area {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+    overflow: hidden;
+    background: rgba(0, 255, 157, 0.03);
+}
+
+/* PACKETS */
+.packet {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background: black;
+    border: 2px solid red;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.15s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 0 12px red;
+    user-select: none;
+}
+
+/* DISINTEGRATION EFFECT */
+.packet.explode {
+    transform: scale(1.3) rotate(8deg);
+    opacity: 0;
+    box-shadow: 0 0 20px #ff0000;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 255, 157, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #00ff9d;
+    transition: width 0.3s linear;
+}
+
+.btn-decrypt {
+    display: block;              /* permet de centrer */
+    margin: 25px auto 0 auto;    /* centré + espace au-dessus */
+    padding: 12px 28px;          /* plus grand */
+    font-size: 1.2rem;           /* plus lisible */
+    font-weight: bold;
+    background: rgba(0, 255, 157, 0.1);
+    border: 2px solid #00ff9d;
+    border-radius: 6px;
+    color: #00ff9d;
+    cursor: pointer;
+    transition: 0.25s;
+    text-align: center;
+    box-shadow: 0 0 10px #00ff9d;
+}
+
+.btn-decrypt:hover:not(:disabled) {
+    background: #00ff9d;
+    color: black;
+    box-shadow: 0 0 15px #00ff9d;
+}
+
+.btn-decrypt:disabled {
+    opacity: 0.4;
+    cursor: default;
+    box-shadow: none;
+}
+
+
+/* MOT EN FOND (pas bloquant) */
+.word-overlay {
+    position: absolute;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: #00ff9d;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-shadow: 0 0 12px #00ff9d;
+    opacity: 0.15; /* 🔥 en fond */
+    pointer-events: none; /* 🔥 ne bloque rien */
+    z-index: 1;
+}
+
+/* BACK BUTTON */
+.back {
+    display: inline-block;
+    margin-top: 30px;
+    color: #00ff9d;
+    text-decoration: none;
+    border-bottom: 1px solid #00ff9d;
+    padding-bottom: 2px;
+    transition: 0.25s;
+}
+
+.back:hover {
+    background: #00ff9d;
+    color: black;
+    padding: 4px 10px;
+}
