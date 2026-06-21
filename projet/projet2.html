@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Budget Familial</title>
+
+    <link rel="stylesheet" href="../projet/projet2.css">
+</head>
+<body>
+
+    <!-- Effets Matrix -->
+    <div class="matrix-bg"></div>
+    <div class="scanlines"></div>
+
+    <main class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <h1 class="title">&gt; Projet Budget Familial</h1>
+            <p class="subtitle">Application Flutter / Dart – Gestion locale du budget</p>
+        </header>
+
+        <!-- IMAGE PRINCIPALE -->
+        <section class="hero">
+            <img src="images/dashbordavant.jpg" alt="Dashboard budget familial">
+            <p class="image-caption">
+                Tableau de bord principal : aperçu des revenus, dépenses, solde et épargne.
+            </p>
+        </section>
+
+        <!-- CONTENU -->
+        <section class="project-details">
+
+            <h2 class="section-title">Présentation du projet</h2>
+
+            <p>
+                Ce projet est une <strong>application mobile de gestion du budget familial</strong>,
+                développée en <strong>Flutter (Dart)</strong>.  
+                Elle permet de suivre toutes les dépenses et revenus du foyer, de manière simple,
+                rapide et surtout totalement <strong>locale.</strong>
+            </p>
+
+            <p>
+                L’application est pensée pour un usage familial, mais avec un fonctionnement clair :
+                <strong>seul l’administrateur du téléphone peut gérer le budget</strong>.
+                Les autres membres peuvent être ajoutés pour attribuer les dépenses,
+                mais ils n’ont pas accès à l’application directement.
+            </p>
+
+            <p>
+                J’ai également prévu une évolution future :  
+                <strong>permettre à chaque membre de la famille d’avoir son propre accès</strong>,
+                tout en synchronisant les données entre les appareils.  
+                Pour l’instant, tout fonctionne en local, ce qui garantit une utilisation simple
+                et sans connexion internet.
+            </p>
+
+            <h2 class="section-title">Fonctionnalités principales</h2>
+
+            <ul>
+                <li><strong>Ajout de dépenses et revenus</strong> avec description, montant, catégorie et membre.</li>
+                <li><strong>Dashboard complet</strong> : revenus, dépenses, solde, épargne.</li>
+                <li><strong>Répartition par catégories</strong> (Logement, Divers, Enfants, Transport…).</li>
+                <li><strong>Historique des dernières dépenses</strong> avec date et détails.</li>
+                <li><strong>Interface simple et rapide</strong> pensée pour un usage quotidien.</li>
+            </ul>
+
+            <h2 class="section-title">Interface & expérience utilisateur</h2>
+
+            <p>
+                L’interface est construite autour d’un <strong>dashboard clair</strong> :
+                chaque information importante est mise en avant avec un code couleur
+                (vert pour les revenus, rose pour les dépenses, bleu pour le solde…).
+            </p>
+
+            <p>
+                L’ajout d’une dépense ou d’un revenu se fait via un
+                <strong>bouton flottant</strong> qui ouvre une fenêtre dédiée :
+                description, montant, catégorie, membre…  
+                Tout est pensé pour aller vite.
+            </p>
+
+            <!-- GALERIE -->
+            <div class="image-grid">
+
+                <figure class="image-card">
+                    <img src="images/ajoutdepense.jpg" alt="Ajout d'une dépense">
+                    <figcaption>
+                        <strong>Ajout d’une dépense</strong><br>
+                        Description, montant, catégorie et membre de la famille.
+                    </figcaption>
+                </figure>
+
+                <figure class="image-card">
+                    <img src="images/ajoutrevenu.jpg" alt="Répartition par catégories">
+                    <figcaption>
+                        <strong>Ajout d’un revenu</strong><br>
+                         Description, montant, catégorie et membre de la famille.
+                    </figcaption>
+                </figure>
+
+                <figure class="image-card">
+                    <img src="images/dashbordcomplet.jpg" alt="Dashboard complet">
+                    <figcaption>
+                        <strong>Dashboard</strong><br>
+                        Vue globale du budget familial après ajout des dépenses et revenus.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+            <h2 class="section-title">Technologies utilisées</h2>
+
+            <table class="tools-table">
+                <thead>
+                    <tr>
+                        <th>Technologie</th>
+                        <th>Utilisation dans le projet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Flutter / Dart</td>
+                        <td>Développement complet de l’application mobile</td>
+                    </tr>
+                    <tr>
+                        <td>Android Studio</td>
+                        <td>Compilation, tests et déploiement sur smartphone</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+
+        <a href="../projet/projets.html" class="back">← Retour aux projets</a>
+
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <img src="" alt="Image en plein écran">
+    </div>
+
+    <script>
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = lightbox.querySelector("img");
+
+        document.querySelectorAll(".hero img, .image-card img").forEach(img => {
+            img.addEventListener("click", () => {
+                lightboxImg.src = img.src;
+                lightbox.style.display = "flex";
+            });
+        });
+
+        lightbox.addEventListener("click", () => {
+            lightbox.style.display = "none";
+        });
+
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") {
+                lightbox.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>

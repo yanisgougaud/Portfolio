@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../competences/competences.css">
+    <title>Compétences – Yanis</title>
+</head>
+
+<body>
+
+    <div class="matrix-bg"></div>
+    <div class="scanlines"></div>
+
+    <div class="container">
+
+        <h1 class="title">> Voici mon terminal de compétences :)</h1>
+        <p class="subtitle">Tape une commande pour afficher une catégorie.</p>
+
+        <div class="commands-list">
+            <p>> Commandes disponibles :</p>
+            <ul>
+                <li><span class="cmd">help</span> — Afficher les commandes</li>
+            </ul>
+        </div>
+
+        <div id="terminal">
+            <div class="line">
+                <span class="prompt">$</span>
+                <input type="text" id="commandInput" autocomplete="off" autofocus>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back">Retour</a>
+
+    </div>
+    <script>
+        function typeWriterEffect(element, html, speed = 5) {
+            let i = 0;
+            let tag = false;
+            let text = "";
+        
+            function type() {
+                text += html[i];
+                element.innerHTML = text;
+        
+                if (html[i] === "<") tag = true;
+                if (html[i] === ">") tag = false;
+        
+                i++;
+        
+                if (i < html.length) {
+                    setTimeout(type, tag ? 0 : speed);
+                }
+            }
+        
+            type();
+        }
+        
+        const skills = {
+            "dev": `
+        <div class="skill-block">
+            <h2 class="skill-title">> Développement</h2>
+            <div class="skill-item">• C++ — <span class="skill-desc">Programmation bas niveau, optimisation</span></div>
+            <div class="skill-item">• Python — <span class="skill-desc">Scripts, automatisation</span></div>
+            <div class="skill-item">• Unity C# — <span class="skill-desc">Gameplay, systèmes, prototypage</span></div>
+            <div class="skill-item">• HTML / CSS / JS — <span class="skill-desc">Web moderne, animations, UI</span></div>
+        </div>
+        `,
+            "design": `
+        <div class="skill-block">
+            <h2 class="skill-title">> Design & Création</h2>
+            <div class="skill-item">• Pixel Art — <span class="skill-desc">Aseprite, sprites animés</span></div>
+            <div class="skill-item">• UI/UX — <span class="skill-desc">Interfaces propres, ergonomie</span></div>
+            <div class="skill-item">• Canva / Photopea — <span class="skill-desc">Création visuelle rapide</span></div>
+            <div class="skill-item">• Montage vidéo — <span class="skill-desc">CapCut / CopCut, edits stylés</span></div>
+        </div>
+        `,
+            "system": `
+        <div class="skill-block">
+            <h2 class="skill-title">> Systèmes & Réseaux</h2>
+            <div class="skill-item">• Windows Admin — <span class="skill-desc">Maintenance, optimisation</span></div>
+            <div class="skill-item">• Scripts — <span class="skill-desc">Automatisation, batch/powershell</span></div>
+            <div class="skill-item">• Analyse réseau — <span class="skill-desc">Diagnostic, sécurité</span></div>
+            <div class="skill-item">• Optimisation système — <span class="skill-desc">Performance & stabilité</span></div>
+        </div>
+        `,
+            "help": `
+        <div class="skill-block">
+            <h2 class="skill-title">> Commandes disponibles</h2>
+            <div class="skill-item">• dev — <span class="skill-desc">Compétences en développement</span></div>
+            <div class="skill-item">• design — <span class="skill-desc">Compétences en design</span></div>
+            <div class="skill-item">• system — <span class="skill-desc">Systèmes & réseaux</span></div>
+            <div class="skill-item">• help — <span class="skill-desc">Afficher cette liste</span></div>
+        </div>
+        `
+        };
+        
+        const terminal = document.getElementById("terminal");
+        
+        function attachListener(input) {
+            input.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") {
+        
+                    /*SUPPRIME LA PREMIÈRE LIGNE APRÈS LA PREMIÈRE COMMANDE*/
+                    const firstLine = terminal.querySelector(".line");
+                    if (firstLine) firstLine.remove();
+        
+                    const cmd = input.value.trim().toLowerCase();
+        
+                    const printed = document.createElement("div");
+                    printed.classList.add("printed-command");
+                    printed.innerHTML = `$ ${cmd}`;
+                    terminal.appendChild(printed);
+        
+                    input.value = "";
+        
+                    const result = document.createElement("div");
+                    result.classList.add("output");
+        
+                    if (skills[cmd]) {
+                        typeWriterEffect(result, skills[cmd], 8);
+                    } else {
+                        result.innerHTML = `<p class="error">Commande inconnue : ${cmd}</p>`;
+                    }
+        
+                    terminal.appendChild(result);
+        
+                    const newline = document.createElement("div");
+                    newline.classList.add("line");
+                    newline.innerHTML = `<span class="prompt">$</span><input type="text" autocomplete="off">`;
+                    terminal.appendChild(newline);
+        
+                    const newInput = newline.querySelector("input");
+                    attachListener(newInput);
+                    newInput.focus();
+        
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
+            });
+        }
+        
+        attachListener(document.getElementById("commandInput"));
+        </script>
+        
+
+</body>
+</html>
