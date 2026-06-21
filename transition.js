@@ -7,18 +7,18 @@ function transitionTo(page) {
 }
 
 document.getElementById("btn-presentation")?.addEventListener("click", () => {
-    transitionTo("../presentation/presentation.html");
+    transitionTo("Portfolio/presentation/presentation.html");
 });
 
 document.getElementById("btn-projets")?.addEventListener("click", () => {
-    transitionTo("../projet/projets.html");
+    transitionTo("Portfolio/projet/projets.html");
 });
 
 document.getElementById("btn-competences")?.addEventListener("click", () => {
-    transitionTo("../competences/competences.html");
+    transitionTo("Portfolio/competences/competences.html");
 });
 
 document.getElementById("btn-contact")?.addEventListener("click", () => {
-    transitionTo("../contact/contact.html");
+    transitionTo("Portfolio/contact/contact.html");
 });
 ``
