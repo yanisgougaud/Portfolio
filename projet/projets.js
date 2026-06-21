@@ -5,7 +5,7 @@ projects.forEach(project => {
     /* =========================
        CONFIGURATION
     ========================== */
-    const REQUIRED_SCORE = 4;
+    const REQUIRED_SCORE = 2;
     const DECRYPT_WORD = project.dataset.word.toUpperCase();
 
     /* =========================
