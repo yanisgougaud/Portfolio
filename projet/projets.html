@@ -3,76 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets – Yanis</title>
-    <link rel="stylesheet" href="../projet/projets.css">
+    <title>Projets — Yanis Gougaud</title>
+    <meta name="description" content="Portfolio de Yanis Gougaud, étudiant en 3e année de BUT Informatique.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2334d399'/><text x='16' y='21.5' font-family='Arial' font-weight='700' font-size='14' text-anchor='middle' fill='%230a0d12'>YG</text></svg>">
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="projets.css">
 </head>
-<body>
+<body class="theme-projets">
 
-    <div class="matrix-bg"></div>
-    <div class="scanlines"></div>
 
-    <div class="container">
-        <h1 class="title">> Décryptage des Projets</h1>
-        <p class="subtitle">Neutralise les paquets corrompus pour débloquer chaque projet.</p>
+    <main class="wrap">
+
+        <section class="page-head">
+            <span class="eyebrow">02 — Projets</span>
+            <h1 class="page-title">Décryptage des <span class="hl">Projets</span></h1>
+            <p class="lead">
+                Neutralise les paquets corrompus pour débloquer chaque projet,
+                puis tape le mot de décryptage qui apparaît.
+            </p>
+            <button class="skip" id="skip" type="button">Pas le temps ? Tout décrypter d'un coup →</button>
+        </section>
 
         <div class="projects">
-
-            <!-- PROJET 1 -->
-            <div class="project" data-link="projet1.html" data-score="4" data-word="UNITY">
+            <div class="project" data-id="1" data-link="projet1.html" data-score="3" data-word="UNITY">
                 <div class="header-line">
-                    <span>[ PROJET 1 ]</span>
-                    <span class="status">Score : 0 / 2</span>
+                    <span class="project-tag">[ PROJET 1 ]</span>
+                    <span class="status">Score : 0 / 3</span>
                 </div>
 
-                <div class="firewall"></div>
-                <div class="game-area"></div>
+                <div class="locked">
+                    <div class="firewall"></div>
+                    <div class="game-area">
+                        <div class="game-hint">Clique sur les paquets corrompus avant qu'ils passent le pare-feu</div>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
 
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
+                    <form class="decrypt-form" autocomplete="off">
+                        <span class="prompt">&gt;</span>
+                        <input type="text" placeholder="mot de décryptage" aria-label="Mot de décryptage du projet 1" disabled>
+                        <button class="btn-decrypt" type="submit" disabled>Décrypter</button>
+                    </form>
+                    <p class="decrypt-msg" aria-live="polite"></p>
                 </div>
 
-                <button class="btn-decrypt" disabled>Décrypter</button>
+                <div class="unlocked" hidden>
+                    <div class="unlocked-visual"><img src="images/image1.webp" alt="VR Médical — Hôpital Émile Roux"></div>
+                    <div class="unlocked-info">
+                        <span class="kind">Projet BUT · Équipe de 20</span>
+                        <h2>VR Médical — Hôpital Émile Roux</h2>
+                        <p>Application de réalité virtuelle pour la rééducation de patients après un AVC. J'ai créé la map Parc et ses zones interactives.</p>
+                        <div class="tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Blender</span><span class="tag">VR</span></div>
+                        <a href="projet1.html" class="btn">Ouvrir le projet →</a>
+                    </div>
+                </div>
             </div>
 
-            <!-- PROJET 2 -->
-            <div class="project" data-link="projet2.html" data-score="8" data-word="FLUTTER">
+            <div class="project" data-id="2" data-link="projet2.html" data-score="4" data-word="FLUTTER">
                 <div class="header-line">
-                    <span>[ PROJET 2 ]</span>
+                    <span class="project-tag">[ PROJET 2 ]</span>
                     <span class="status">Score : 0 / 4</span>
                 </div>
 
-                <div class="firewall"></div>
-                <div class="game-area"></div>
+                <div class="locked">
+                    <div class="firewall"></div>
+                    <div class="game-area">
+                        <div class="game-hint">Clique sur les paquets corrompus avant qu'ils passent le pare-feu</div>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
 
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
+                    <form class="decrypt-form" autocomplete="off">
+                        <span class="prompt">&gt;</span>
+                        <input type="text" placeholder="mot de décryptage" aria-label="Mot de décryptage du projet 2" disabled>
+                        <button class="btn-decrypt" type="submit" disabled>Décrypter</button>
+                    </form>
+                    <p class="decrypt-msg" aria-live="polite"></p>
                 </div>
 
-                <button class="btn-decrypt" disabled>Décrypter</button>
+                <div class="unlocked" hidden>
+                    <div class="unlocked-visual"><img src="images/dashbordcomplet.jpg" alt="Budget Familial"></div>
+                    <div class="unlocked-info">
+                        <span class="kind">Projet personnel · Mobile</span>
+                        <h2>Budget Familial</h2>
+                        <p>Application Android de gestion du budget du foyer : dépenses, revenus, catégories et tableau de bord, 100 % en local.</p>
+                        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Android</span></div>
+                        <a href="projet2.html" class="btn">Ouvrir le projet →</a>
+                    </div>
+                </div>
             </div>
 
-            <!-- PROJET 3 -->
-            <div class="project" data-link="projet3.html" data-score="12" data-word="PYTHON">
+            <div class="project" data-id="3" data-link="projet3.html" data-score="5" data-word="DOJO">
                 <div class="header-line">
-                    <span>[ PROJET 3 ]</span>
-                    <span class="status">Score : 0 / 4</span>
+                    <span class="project-tag">[ PROJET 3 ]</span>
+                    <span class="status">Score : 0 / 5</span>
                 </div>
 
-                <div class="firewall"></div>
-                <div class="game-area"></div>
+                <div class="locked">
+                    <div class="firewall"></div>
+                    <div class="game-area">
+                        <div class="game-hint">Clique sur les paquets corrompus avant qu'ils passent le pare-feu</div>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
 
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
+                    <form class="decrypt-form" autocomplete="off">
+                        <span class="prompt">&gt;</span>
+                        <input type="text" placeholder="mot de décryptage" aria-label="Mot de décryptage du projet 3" disabled>
+                        <button class="btn-decrypt" type="submit" disabled>Décrypter</button>
+                    </form>
+                    <p class="decrypt-msg" aria-live="polite"></p>
                 </div>
 
-                <button class="btn-decrypt" disabled>Décrypter</button>
+                <div class="unlocked" hidden>
+                    <div class="unlocked-visual"><img src="images/wq-sanctuaire.jpg" alt="WorldQuest — RPG d'arts martiaux"></div>
+                    <div class="unlocked-info">
+                        <span class="kind">Projet tuteuré BUT · Équipe de 4 · En cours</span>
+                        <h2>WorldQuest — RPG d'arts martiaux</h2>
+                        <p>Jeu vidéo en pixel art : explorer une île, accomplir des quêtes et combattre en arène pour intégrer un club d'arts martiaux.</p>
+                        <div class="tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Pixel Art</span><span class="tag">Game design</span></div>
+                        <a href="projet3.html" class="btn">Ouvrir le projet →</a>
+                    </div>
+                </div>
             </div>
-
         </div>
 
         <a href="../index.html" class="back">Retour</a>
-    </div>
 
-    <script src="../projet/projets.js"></script>
+    </main>
+
+    <script src="../site.js"></script>
+    <script src="projets.js"></script>
 </body>
 </html>

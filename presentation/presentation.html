@@ -2,55 +2,129 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Présentation – Yanis Gougaud</title>
-    <link rel="stylesheet" href="../presentation/presentation.css">
+    <meta name="description" content="Portfolio de Yanis Gougaud, étudiant en 3e année de BUT Informatique.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2334d399'/><text x='16' y='21.5' font-family='Arial' font-weight='700' font-size='14' text-anchor='middle' fill='%230a0d12'>YG</text></svg>">
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="presentation.css">
 </head>
-
-<body>
+<body class="theme-presentation">
 
     <section class="presentation-container">
 
-        <!-- Image -->
-        <div class="photo">
-            <!-- Remplace src par ta photo -->
-            <img src="../asset/photo-profil.jpg" alt="Photo de Yanis Gougaud">
+        <div class="photo" id="photo">
+            <img src="../asset/photo-profil.jpg" alt="Photo de Yanis Gougaud"
+                 onerror="document.getElementById('photo').classList.add('no-photo')">
+            <div class="initials" aria-hidden="true">YG<span class="cursor">_</span></div>
         </div>
 
-        <!-- Texte -->
         <div class="texte">
-            <h1>À propos de moi</h1>
+            <h1>&gt; À propos de moi</h1>
 
             <p>
-                Je m’appelle <strong>Yanis Gougaud</strong>, passionné par
-                l’informatique, les nouvelles technologies et la compréhension
-                des systèmes numériques.
+                Tout a commencé à Roanne, au Garage 404, avec un <strong>Pong sur Scratch</strong>.
+                Depuis, je n'ai jamais arrêté de construire des choses : réparer des PC, coder des
+                petits jeux, puis des applications complètes.
             </p>
 
             <p>
-                Curieux et rigoureux, j’aime analyser, résoudre des problèmes
-                techniques et améliorer l’expérience utilisateur à travers
-                des solutions fiables et efficaces.
+                Aujourd'hui en 3<sup>e</sup> année de <strong>BUT Informatique</strong> au Puy-en-Velay,
+                ce qui me fait vraiment vibrer, c'est l'<strong>informatique graphique</strong>. J'ai
+                conçu toute la map Parc d'une <strong>application VR</strong> destinée à la rééducation
+                de patients après un AVC, et je développe mes propres projets 3D et mobiles.
             </p>
 
             <p>
-                Ce portfolio reflète mon parcours, mes compétences et mon
-                envie constante d’évoluer dans le domaine informatique.
+                Mais je ne suis pas qu'un développeur. Chez <strong>CETIH</strong>, j'ai migré des postes
+                vers Windows 11, basculé les téléphones vers un nouvel opérateur et dépanné les
+                utilisateurs au quotidien. J'y ai appris qu'un bon outil, c'est avant tout un outil
+                qui marche pour ceux qui s'en servent.
             </p>
 
-            <a href="../asset/CV GOUGAUDYANIS.pdf"
-               class="cv-btn"
-               target="_blank">
-                Télécharger mon CV
-            </a>
+            <p>
+                Je cherche maintenant un <strong>stage de 4 mois à Roanne</strong> (avril → juillet 2027)
+                pour mettre tout ça au service d'une équipe.
+            </p>
 
-            <br><br>
-
-            <a href="../index.html" class="back">
-                Retour
-            </a>
+            <div class="cv-actions">
+                <a href="../asset/CV-Yanis-Gougaud.pdf" class="cv-btn" download>Télécharger mon CV</a>
+                <a href="../asset/CV-Yanis-Gougaud.pdf" class="cv-btn secondary" target="_blank" rel="noopener">Voir le CV</a>
+            </div>
         </div>
 
     </section>
 
+    <section class="blocks">
+
+        <div class="block">
+            <h2>&gt; Parcours</h2>
+
+            <div class="entry">
+                <div class="when">Mars → juin 2026</div>
+                <h3>Stage — Support IT / Téléphonie</h3>
+                <div class="where">CETIH · Machecoul (44)</div>
+                <ul>
+                    <li>Support utilisateurs et incidents réseau</li>
+                    <li>Migration et initialisation de postes vers Windows 11</li>
+                    <li>Migration de la téléphonie mobile vers un nouvel opérateur GSM</li>
+                    <li>Déploiement et mises à jour de SolidWorks, parc informatique</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="when">2024 → 2027</div>
+                <h3>BUT Informatique (en cours)</h3>
+                <div class="where">IUT Clermont Auvergne · Le Puy-en-Velay (43)</div>
+            </div>
+
+            <div class="entry">
+                <div class="when">2024</div>
+                <h3>Baccalauréat technologique</h3>
+                <div class="where">Lycée Hippolyte Carnot · Roanne (42)</div>
+            </div>
+
+            <div class="entry">
+                <div class="when">Avril 2021</div>
+                <h3>Réparation et configuration de PC</h3>
+                <div class="where">RSI · Roanne (42)</div>
+            </div>
+
+            <div class="entry">
+                <div class="when">Octobre 2020</div>
+                <h3>Formation informatique</h3>
+                <div class="where">Garage 404 · Roanne (42) — Scratch, robot mBot, bases HTML/CSS/JS</div>
+            </div>
+        </div>
+
+        <div>
+            <div class="block">
+                <h2>&gt; Je recherche</h2>
+                <div class="line"><b>Stage</b> de fin de BUT (4 mois)</div>
+                <div class="line"><b>Du</b> 9 avril <b>au</b> 24 juillet 2027</div>
+                <div class="line"><b>À</b> Roanne et alentours</div>
+                <div class="line">Informatique graphique, développement, support / administration</div>
+            </div>
+
+            <div class="block">
+                <h2>&gt; Langues</h2>
+                <div class="line"><b>Anglais</b> — B1</div>
+                <div class="line"><b>Espagnol</b> — A2</div>
+                <div class="line"><b>Allemand</b> — A1</div>
+            </div>
+
+            <div class="block">
+                <h2>&gt; Centres d'intérêt</h2>
+                <div class="line"><b>Jeu vidéo</b> — joueur depuis mes 10 ans</div>
+                <div class="line"><b>Voyages</b> — 14 pays visités</div>
+                <div class="line"><b>Musique</b> — écoute et concerts</div>
+            </div>
+        </div>
+
+    </section>
+
+    <a href="../index.html" class="back">Retour</a>
+
+    <script src="../site.js"></script>
 </body>
 </html>

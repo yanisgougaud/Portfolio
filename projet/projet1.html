@@ -3,171 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet VR Médical</title>
-
-    <link rel="stylesheet" href="../projet/projet1.css">
+    <title>VR Médical — Yanis Gougaud</title>
+    <meta name="description" content="Portfolio de Yanis Gougaud, étudiant en 3e année de BUT Informatique.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2334d399'/><text x='16' y='21.5' font-family='Arial' font-weight='700' font-size='14' text-anchor='middle' fill='%230a0d12'>YG</text></svg>">
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="projet.css">
 </head>
-<body>
+<body class="theme-projets">
 
-    <!-- Effets Matrix -->
-    <div class="matrix-bg"></div>
-    <div class="scanlines"></div>
 
-    <main class="container">
+    <main class="wrap">
 
-        <!-- HEADER -->
-        <header class="header">
-            <h1 class="title">&gt; Projet VR Médical</h1>
-            <p class="subtitle">Application Unity VR – Hôpital Émile Roux</p>
-        </header>
-
-        <!-- IMAGE PRINCIPALE -->
-        <section class="hero">
-            <img src="images/image1.webp" alt="Ambiance générale du parc en VR">
-            <p class="image-caption">
-                Vue immersive de la map Parc : travail sur l’ambiance, la végétation
-                et l’éclairage afin de créer un environnement réaliste et apaisant.
-            </p>
+        <section class="project-head">
+            <a href="projets.html" class="back-link">← Tous les projets</a><br><br>
+            <span class="eyebrow">Projet 01 · 3D / VR</span>
+            <h1 class="page-title">VR Médical — <span class="hl">Hôpital Émile Roux</span></h1>
+            <p class="lead">Une application de réalité virtuelle développée avec Unity pour accompagner des patients ayant subi un AVC dans leur rééducation neurologique, grâce à des exercices immersifs et progressifs.</p>
+            <dl class="meta">
+                <div><dt>Contexte</dt><dd>Projet BUT pour l'hôpital Émile Roux</dd></div>
+                <div><dt>Équipe</dt><dd>20 personnes, 5 groupes</dd></div>
+                <div><dt>Mon rôle</dt><dd>Groupe Ressources — map Parc</dd></div>
+                <div><dt>Stack</dt><dd>Unity · Blender · GitHub · Jira</dd></div>
+            </dl>
         </section>
 
-        <!-- CONTENU -->
-        <section class="project-details">
+        <figure class="cover reveal">
+            <img src="images/image1.webp" alt="Vue immersive de la map Parc en VR" data-zoom>
+            <figcaption>Vue immersive de la map Parc : ambiance, végétation et éclairage pensés pour un environnement réaliste et apaisant.</figcaption>
+        </figure>
 
-            <h2 class="section-title">Présentation du projet</h2>
+        <div class="content">
+            <article class="prose">
+                <section class="reveal">
+                    <h2>Le projet</h2>
+                    <p>
+                        L'objectif est d'aider des patients ayant subi un <strong>AVC</strong> à travailler
+                        leur <strong>rééducation neurologique</strong> dans un environnement virtuel, plus
+                        motivant qu'un exercice sur papier.
+                    </p>
+                    <p>
+                        Le développement a été mené par une équipe de <strong>20 personnes</strong>, réparties
+                        en cinq groupes : Ressources, UI, UX, Datas et LIV. Je faisais partie du groupe
+                        <strong>Ressources</strong>, en charge des environnements et des assets 3D.
+                    </p>
+                </section>
 
-            <p>
-                Ce projet consiste en la création d’une
-                <strong>application de réalité virtuelle développée avec Unity</strong>
-                pour l’hôpital <strong>Émile Roux</strong>.
-                L’objectif est d’accompagner des patients ayant subi un
-                <strong>AVC</strong> dans leur <strong>rééducation neurologique</strong>,
-                via des exercices immersifs et progressifs.
-            </p>
+                <section class="reveal">
+                    <h2>Ma contribution : la map Parc</h2>
+                    <p>
+                        J'ai réalisé la <strong>création complète de la map Parc</strong> : agencement des chemins,
+                        décor, éclairage et placement des zones interactives. Ces zones permettent de travailler
+                        le <strong>repérage visuel</strong> et le <strong>pointage d'objets</strong> en VR.
+                    </p>
+                    <div class="gallery">
+                        <figure class="shot"><img src="images/image2.webp" alt="Kiosque central du parc" data-zoom><figcaption><strong>Kiosque central</strong>Repère visuel principal des exercices.</figcaption></figure>
+                        <figure class="shot"><img src="images/image3.webp" alt="Table de pique-nique et aire de jeux" data-zoom><figcaption><strong>Objets secondaires</strong>Table, aire de jeux, éléments de décor.</figcaption></figure>
+                        <figure class="shot"><img src="images/image4.webp" alt="Vue du dessus de la map Parc" data-zoom><figcaption><strong>Vue globale</strong>Chemins et zones interactives.</figcaption></figure>
+                    </div>
+                </section>
 
-            <p>
-                Le développement a été réalisé par une équipe de
-                <strong>20 personnes</strong>,
-                réparties en plusieurs groupes (Ressources, UI, UX, Datas et LIV).
-                Je faisais partie du groupe <strong>Ressources</strong>.
-            </p>
+                <section class="reveal">
+                    <h2>Une difficulté progressive</h2>
+                    <p>Les exercices sont découpés en trois niveaux, pour s'adapter aux capacités de chaque patient :</p>
+                    <div class="steps">
+                        <div class="step"><b>Niveau 1</b><span>Objets très visibles, faciles à repérer.</span></div>
+                        <div class="step"><b>Niveau 2</b><span>Objets moins évidents, plus de recherche visuelle.</span></div>
+                        <div class="step"><b>Niveau 3</b><span>Éléments discrets, intégrés au décor.</span></div>
+                    </div>
+                </section>
 
-            <h2 class="section-title">Map Parc & interactions VR</h2>
+                <section class="reveal">
+                    <h2>Ce que j'en retiens</h2>
+                    <ul>
+                        <li>Concevoir un environnement 3D pour un vrai public, avec des contraintes de confort en VR.</li>
+                        <li>Travailler à 20 avec Git et Jira : branches, tâches, coordination entre groupes.</li>
+                        <li>Optimiser des assets (Blender, Asset Store, Sketchfab) pour garder de bonnes performances.</li>
+                    </ul>
+                </section>
+            </article>
+            <aside class="aside">
+                <div class="card reveal">
+                    <h3>Outils utilisés</h3>
+                    <ul class="stack-list">
+                        <li><strong>Unity</strong><span>Application VR, scènes et interactions</span></li>
+                        <li><strong>Blender</strong><span>Création et optimisation des assets 3D</span></li>
+                        <li><strong>GitHub</strong><span>Travail collaboratif et versions</span></li>
+                        <li><strong>Unity Asset Store</strong><span>Assets et textures</span></li>
+                        <li><strong>Sketchfab</strong><span>Compléments d'assets 3D</span></li>
+                        <li><strong>Jira</strong><span>Organisation et suivi des tâches</span></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
 
-            <p>
-                J’ai été en charge de la
-                <strong>création complète de la map Parc</strong>.
-                Cet environnement propose plusieurs zones interactives
-                
-                permettant de travailler le <strong>repérage visuel</strong>
-                et le <strong>pointage d’objets</strong>.
-            </p>
+        <nav class="project-nav" aria-label="Autres projets">
+            <span></span>
+            <a href="projet2.html" class="next"><small>Projet suivant →</small><strong>Budget Familial</strong></a>
+        </nav>
 
-            <!-- GALERIE -->
-            <div class="image-grid">
-
-                <figure class="image-card">
-                    <img src="images/image2.webp" alt="Kiosque du parc en VR">
-                    <figcaption>
-                        <strong>Kiosque central</strong><br>
-                        Repère visuel principal utilisé dans les exercices VR.
-                    </figcaption>
-                </figure>
-
-                <figure class="image-card">
-                    <img src="images/image3.webp" alt="Table et aire de jeu en VR">
-                    <figcaption>
-                        <strong>Objets secondaires</strong><br>
-                        Table de pique-nique, aire de jeux et éléments de décor.
-                    </figcaption>
-                </figure>
-
-                <figure class="image-card">
-                    <img src="images/image4.webp" alt="Vue du dessus de la map Parc">
-                    <figcaption>
-                        <strong>Vue globale</strong><br>
-                        Organisation des chemins et zones interactives.
-                    </figcaption>
-                </figure>
-
-            </div>
-
-            <p>
-                Les exercices sont divisés en
-                <strong>trois niveaux de difficulté progressifs</strong>,
-                allant d’objets très visibles à des éléments plus discrets,
-                afin d’adapter la difficulté aux capacités du patient.
-            </p>
-
-            <!-- TABLEAU OUTILS -->
-            <h2 class="section-title">Applications utilisées</h2>
-
-            <table class="tools-table">
-                <thead>
-                    <tr>
-                        <th>Application</th>
-                        <th>Utilisation dans le projet</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Unity</td>
-                        <td>Développement de l’application VR, création des interactions et des scènes</td>
-                    </tr>
-                    <tr>
-                        <td>Blender</td>
-                        <td>Création et optimisation des assets 3D</td>
-                    </tr>
-                    <tr>
-                        <td>GitHub</td>
-                        <td>Travail collaboratif et gestion des versions du projet</td>
-                    </tr>
-                    <tr>
-                        <td>Unity Asset Store</td>
-                        <td>Récupération d’assets et de textures</td>
-                    </tr>
-                    <tr>
-                        <td>Sketchfab</td>
-                        <td>Complément et intégration d’assets 3D</td>
-                    </tr>
-                    <tr>
-                        <td>Jira</td>
-                        <td>Organisation du travail et suivi des tâches</td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </section>
-
-        <a href="../projet/projets.html" class="back">← Retour aux projets</a>
+        <a href="projets.html" class="back">← Retour aux projets</a>
 
     </main>
 
-    <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox">
-        <img src="" alt="Image en plein écran">
-    </div>
-
-    <script>
-        const lightbox = document.getElementById("lightbox");
-        const lightboxImg = lightbox.querySelector("img");
-
-        document.querySelectorAll(".hero img, .image-card img").forEach(img => {
-            img.addEventListener("click", () => {
-                lightboxImg.src = img.src;
-                lightbox.style.display = "flex";
-            });
-        });
-
-        lightbox.addEventListener("click", () => {
-            lightbox.style.display = "none";
-        });
-
-        document.addEventListener("keydown", e => {
-            if (e.key === "Escape") {
-                lightbox.style.display = "none";
-            }
-        });
-    </script>
-
+    <script src="../site.js"></script>
+    <script src="lightbox.js"></script>
 </body>
 </html>

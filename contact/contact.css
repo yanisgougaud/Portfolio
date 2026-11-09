@@ -1,159 +1,137 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: black;
-    color: #00ff9d;
-    font-family: "Courier New", monospace;
-    overflow-x: hidden;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+/* Contact — design d'origine */
 
 .container {
     width: 90%;
     max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 0 20px;
     text-align: center;
-    position: relative;
-    z-index: 2;
 }
 
-/* --- Fond Matrix --- */
-.matrix-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 255, 157, 0.05) 0px,
-        rgba(0, 255, 157, 0.05) 2px,
-        transparent 3px,
-        transparent 6px
-    );
-    opacity: 0.15;
-    animation: matrixMove 8s linear infinite;
-    z-index: 0;
-}
-
-@keyframes matrixMove {
-    from { background-position-y: 0; }
-    to { background-position-y: 200px; }
-}
-
-/* Scanlines */
-.scanlines {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.03) 0px,
-        rgba(255,255,255,0.03) 2px,
-        transparent 3px,
-        transparent 4px
-    );
-    z-index: 3;
-}
-
-/* Titre */
 .title {
     font-size: 2.5rem;
     margin-bottom: 10px;
-    animation: fadeIn 0.8s ease forwards;
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.4);
+    animation: fadeUp 0.8s ease forwards;
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    opacity: 0.8;
-    margin-bottom: 40px;
+    font-size: 1.15rem;
+    opacity: 0.85;
+    margin-bottom: 30px;
+}
+
+/* Infos directes */
+.direct {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.direct a, .direct button {
+    display: block;
+    padding: 12px 10px;
+    border: 2px solid #00ff9d;
+    border-radius: 5px;
+    background: rgba(0, 255, 157, 0.05);
+    color: #00ff9d;
+    font: 0.95rem "Courier New", monospace;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+    overflow-wrap: anywhere;
+}
+
+.direct a:hover, .direct button:hover {
+    background: #00ff9d;
+    color: #000;
+    box-shadow: 0 0 20px #00ff9d;
+}
+
+.direct small { display: block; opacity: 0.7; font-size: 0.78rem; margin-bottom: 3px; }
+
+.dispo {
+    margin: -10px 0 30px;
+    font-size: 0.95rem;
+    opacity: 0.9;
 }
 
 /* Formulaire */
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    animation: fadeIn 1s ease forwards;
+    gap: 22px;
+    animation: fadeUp 1s ease forwards;
 }
 
-.field {
-    text-align: left;
-}
+.field { text-align: left; }
 
-label {
+.field label {
     display: block;
     margin-bottom: 5px;
     font-size: 1.1rem;
 }
 
-input, textarea {
+.field input,
+.field textarea,
+.field select {
     width: 100%;
     padding: 12px;
     background: rgba(0, 255, 157, 0.05);
     border: 2px solid #00ff9d;
-    color: #00ff9d;
-    font-family: "Courier New", monospace;
-    font-size: 1rem;
     border-radius: 5px;
+    color: #00ff9d;
+    font: 1rem "Courier New", monospace;
     outline: none;
     transition: 0.3s;
 }
 
-input:focus, textarea:focus {
-    box-shadow: 0 0 15px #00ff9d;
-}
+.field select option { background: #000; }
 
-textarea {
-    height: 120px;
-    resize: none;
-}
+.field input::placeholder,
+.field textarea::placeholder { color: rgba(0, 255, 157, 0.45); }
 
-/* Bouton envoyer */
+.field input:focus,
+.field textarea:focus,
+.field select:focus { box-shadow: 0 0 15px #00ff9d; }
+
+.field textarea { height: 140px; resize: vertical; }
+
+.field.invalid input,
+.field.invalid textarea { border-color: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
+
+.field .error { display: none; margin-top: 5px; font-size: 0.85rem; color: #ff4d4d; }
+.field.invalid .error { display: block; }
+
 .send-btn {
-    padding: 12px 25px;
+    display: block;
+    margin: 0 auto;
+    padding: 12px 30px;
     background: transparent;
     border: 2px solid #00ff9d;
+    border-radius: 5px;
     color: #00ff9d;
-    font-size: 1.2rem;
+    font: 1.2rem "Courier New", monospace;
     cursor: pointer;
     transition: 0.3s;
-    border-radius: 5px;
-    display: block; 
-    margin: 0px auto;
 }
 
 .send-btn:hover {
     background: #00ff9d;
-    color: black;
+    color: #000;
     box-shadow: 0 0 20px #00ff9d;
     transform: scale(1.05);
 }
 
-/* Retour */
-.back {
-    display: inline-block;
-    margin-top: 40px;
-    color: #00ff9d;
-    text-decoration: none;
-    border-bottom: 1px solid #00ff9d;
-    transition: 0.3s;
-}
+.form-msg { min-height: 1.3em; font-size: 0.95rem; margin: 0; }
 
-.back:hover {
-    color: black;
-    background: #00ff9d;
-    padding: 5px 10px;
-}
-
-/* Fade-in */
-@keyframes fadeIn {
+@keyframes fadeUp {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+    .title { font-size: 2rem; }
+    .direct { grid-template-columns: 1fr; }
 }

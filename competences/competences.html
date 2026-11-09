@@ -3,146 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../competences/competences.css">
     <title>Compétences – Yanis</title>
+    <meta name="description" content="Portfolio de Yanis Gougaud, étudiant en 3e année de BUT Informatique.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2334d399'/><text x='16' y='21.5' font-family='Arial' font-weight='700' font-size='14' text-anchor='middle' fill='%230a0d12'>YG</text></svg>">
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="competences.css">
 </head>
-
-<body>
-
-    <div class="matrix-bg"></div>
-    <div class="scanlines"></div>
+<body class="theme-competences">
 
     <div class="container">
 
-        <h1 class="title">> Voici mon terminal de compétences :)</h1>
-        <p class="subtitle">Tape une commande pour afficher une catégorie.</p>
+        <h1 class="title">&gt; Voici mon terminal de compétences :)</h1>
+        <p class="subtitle">Tape une commande (ou clique dessus) pour afficher une catégorie.</p>
 
         <div class="commands-list">
-            <p>> Commandes disponibles :</p>
-            <ul>
-                <li><span class="cmd">help</span> — Afficher les commandes</li>
-            </ul>
+            <p>&gt; Commandes disponibles :</p>
+            <div class="cmds"><button class="cmd" data-cmd="dev">dev</button> <button class="cmd" data-cmd="3d">3d</button> <button class="cmd" data-cmd="system">system</button> <button class="cmd" data-cmd="data">data</button> <button class="cmd" data-cmd="iot">iot</button> <button class="cmd" data-cmd="outils">outils</button> <button class="cmd" data-cmd="all">all</button> <button class="cmd" data-cmd="help">help</button> <button class="cmd" data-cmd="clear">clear</button></div>
         </div>
 
         <div id="terminal">
+            <div class="output intro">Bienvenue ! Tape <b>help</b> pour commencer.</div>
             <div class="line">
                 <span class="prompt">$</span>
-                <input type="text" id="commandInput" autocomplete="off" autofocus>
+                <input type="text" id="commandInput" autocomplete="off" spellcheck="false" aria-label="Commande" autofocus>
             </div>
         </div>
 
         <a href="../index.html" class="back">Retour</a>
 
     </div>
-    <script>
-        function typeWriterEffect(element, html, speed = 5) {
-            let i = 0;
-            let tag = false;
-            let text = "";
-        
-            function type() {
-                text += html[i];
-                element.innerHTML = text;
-        
-                if (html[i] === "<") tag = true;
-                if (html[i] === ">") tag = false;
-        
-                i++;
-        
-                if (i < html.length) {
-                    setTimeout(type, tag ? 0 : speed);
-                }
-            }
-        
-            type();
-        }
-        
-        const skills = {
-            "dev": `
-        <div class="skill-block">
-            <h2 class="skill-title">> Développement</h2>
-            <div class="skill-item">• C++ — <span class="skill-desc">Programmation bas niveau, optimisation</span></div>
-            <div class="skill-item">• Python — <span class="skill-desc">Scripts, automatisation</span></div>
-            <div class="skill-item">• Unity C# — <span class="skill-desc">Gameplay, systèmes, prototypage</span></div>
-            <div class="skill-item">• HTML / CSS / JS — <span class="skill-desc">Web moderne, animations, UI</span></div>
-        </div>
-        `,
-            "design": `
-        <div class="skill-block">
-            <h2 class="skill-title">> Design & Création</h2>
-            <div class="skill-item">• Pixel Art — <span class="skill-desc">Aseprite, sprites animés</span></div>
-            <div class="skill-item">• UI/UX — <span class="skill-desc">Interfaces propres, ergonomie</span></div>
-            <div class="skill-item">• Canva / Photopea — <span class="skill-desc">Création visuelle rapide</span></div>
-            <div class="skill-item">• Montage vidéo — <span class="skill-desc">CapCut / CopCut, edits stylés</span></div>
-        </div>
-        `,
-            "system": `
-        <div class="skill-block">
-            <h2 class="skill-title">> Systèmes & Réseaux</h2>
-            <div class="skill-item">• Windows Admin — <span class="skill-desc">Maintenance, optimisation</span></div>
-            <div class="skill-item">• Scripts — <span class="skill-desc">Automatisation, batch/powershell</span></div>
-            <div class="skill-item">• Analyse réseau — <span class="skill-desc">Diagnostic, sécurité</span></div>
-            <div class="skill-item">• Optimisation système — <span class="skill-desc">Performance & stabilité</span></div>
-        </div>
-        `,
-            "help": `
-        <div class="skill-block">
-            <h2 class="skill-title">> Commandes disponibles</h2>
-            <div class="skill-item">• dev — <span class="skill-desc">Compétences en développement</span></div>
-            <div class="skill-item">• design — <span class="skill-desc">Compétences en design</span></div>
-            <div class="skill-item">• system — <span class="skill-desc">Systèmes & réseaux</span></div>
-            <div class="skill-item">• help — <span class="skill-desc">Afficher cette liste</span></div>
-        </div>
-        `
-        };
-        
-        const terminal = document.getElementById("terminal");
-        
-        function attachListener(input) {
-            input.addEventListener("keydown", function(e) {
-                if (e.key === "Enter") {
-        
-                    /*SUPPRIME LA PREMIÈRE LIGNE APRÈS LA PREMIÈRE COMMANDE*/
-                    const firstLine = terminal.querySelector(".line");
-                    if (firstLine) firstLine.remove();
-        
-                    const cmd = input.value.trim().toLowerCase();
-        
-                    const printed = document.createElement("div");
-                    printed.classList.add("printed-command");
-                    printed.innerHTML = `$ ${cmd}`;
-                    terminal.appendChild(printed);
-        
-                    input.value = "";
-        
-                    const result = document.createElement("div");
-                    result.classList.add("output");
-        
-                    if (skills[cmd]) {
-                        typeWriterEffect(result, skills[cmd], 8);
-                    } else {
-                        result.innerHTML = `<p class="error">Commande inconnue : ${cmd}</p>`;
-                    }
-        
-                    terminal.appendChild(result);
-        
-                    const newline = document.createElement("div");
-                    newline.classList.add("line");
-                    newline.innerHTML = `<span class="prompt">$</span><input type="text" autocomplete="off">`;
-                    terminal.appendChild(newline);
-        
-                    const newInput = newline.querySelector("input");
-                    attachListener(newInput);
-                    newInput.focus();
-        
-                    terminal.scrollTop = terminal.scrollHeight;
-                }
-            });
-        }
-        
-        attachListener(document.getElementById("commandInput"));
-        </script>
-        
 
+    <script>
+const skills = {
+    "dev": `<div class="skill-block"><h2 class="skill-title">&gt; Développement</h2><div class="skill-item">• C# — <span class="skill-desc">Unity, gameplay, interactions (projet VR Médical)</span></div><div class="skill-item">• C++ — <span class="skill-desc">Programmation bas niveau, optimisation</span></div><div class="skill-item">• Python — <span class="skill-desc">Scripts, automatisation</span></div><div class="skill-item">• Dart / Flutter — <span class="skill-desc">Application mobile Budget Familial</span></div><div class="skill-item">• Lua — <span class="skill-desc">Scripting</span></div><div class="skill-item">• HTML / CSS / JS — <span class="skill-desc">Web, animations, UI (ce portfolio)</span></div></div>`,
+    "3d": `<div class="skill-block"><h2 class="skill-title">&gt; 3D, VR & Création</h2><div class="skill-item">• Unity — <span class="skill-desc">Scènes, interactions, réalité virtuelle</span></div><div class="skill-item">• Blender — <span class="skill-desc">Modélisation et optimisation d'assets 3D</span></div><div class="skill-item">• Godot — <span class="skill-desc">Interface (IHM) du capteur connecté</span></div><div class="skill-item">• Pixel Art — <span class="skill-desc">Aseprite, sprites animés</span></div><div class="skill-item">• UI/UX — <span class="skill-desc">Interfaces propres, ergonomie</span></div><div class="skill-item">• Canva / Photopea — <span class="skill-desc">Création visuelle rapide</span></div><div class="skill-item">• Montage vidéo — <span class="skill-desc">CapCut</span></div></div>`,
+    "system": `<div class="skill-block"><h2 class="skill-title">&gt; Systèmes & Réseaux</h2><div class="skill-item">• Windows 11 — <span class="skill-desc">Migration et initialisation de postes (stage CETIH)</span></div><div class="skill-item">• Support utilisateurs — <span class="skill-desc">Assistance, résolution d'incidents</span></div><div class="skill-item">• Réseau — <span class="skill-desc">Diagnostic et incidents réseau</span></div><div class="skill-item">• Téléphonie mobile — <span class="skill-desc">Migration vers un nouvel opérateur GSM</span></div><div class="skill-item">• Parc informatique — <span class="skill-desc">Gestion du matériel, déploiement SolidWorks</span></div><div class="skill-item">• Scripts — <span class="skill-desc">Automatisation batch / PowerShell</span></div><div class="skill-item">• Dépannage PC — <span class="skill-desc">Virus, pannes, configuration</span></div></div>`,
+    "data": `<div class="skill-block"><h2 class="skill-title">&gt; Données & Numérique responsable</h2><div class="skill-item">• MySQL / SQL — <span class="skill-desc">Modéliser, créer et interroger des bases</span></div><div class="skill-item">• RGPD — <span class="skill-desc">Confidentialité et protection des données</span></div><div class="skill-item">• Accessibilité — <span class="skill-desc">Sites et applis utilisables par tous</span></div></div>`,
+    "iot": `<div class="skill-block"><h2 class="skill-title">&gt; Objets connectés</h2><div class="skill-item">• ESP32 — <span class="skill-desc">Capteur connecté (projet BUT)</span></div><div class="skill-item">• Capteurs — <span class="skill-desc">Lecture et remontée de mesures</span></div></div>`,
+    "outils": `<div class="skill-block"><h2 class="skill-title">&gt; Outils & Méthodes</h2><div class="skill-item">• Git / GitHub — <span class="skill-desc">Versions, travail collaboratif</span></div><div class="skill-item">• Jira — <span class="skill-desc">Suivi des tâches en équipe de 20</span></div><div class="skill-item">• Android Studio — <span class="skill-desc">Build et tests mobiles</span></div><div class="skill-item">• VS Code / Visual Studio — <span class="skill-desc">Développement au quotidien</span></div></div>`,
+    "help": `<div class="skill-block"><h2 class="skill-title">&gt; Commandes disponibles</h2><div class="skill-item">• dev — <span class="skill-desc">Développement</span></div><div class="skill-item">• 3d — <span class="skill-desc">3D, VR & Création</span></div><div class="skill-item">• system — <span class="skill-desc">Systèmes & Réseaux</span></div><div class="skill-item">• data — <span class="skill-desc">Données & Numérique responsable</span></div><div class="skill-item">• iot — <span class="skill-desc">Objets connectés</span></div><div class="skill-item">• outils — <span class="skill-desc">Outils & Méthodes</span></div><div class="skill-item">• all — <span class="skill-desc">Tout afficher</span></div><div class="skill-item">• clear — <span class="skill-desc">Effacer le terminal</span></div><div class="skill-item">• help — <span class="skill-desc">Afficher cette liste</span></div></div>`
+};
+    </script>
+    <script src="competences.js"></script>
+    <script src="../site.js"></script>
 </body>
 </html>

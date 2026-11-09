@@ -3,38 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../contact/contact.css">
-    <title>Contact</title>
+    <title>Contact – Yanis</title>
+    <meta name="description" content="Portfolio de Yanis Gougaud, étudiant en 3e année de BUT Informatique.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2334d399'/><text x='16' y='21.5' font-family='Arial' font-weight='700' font-size='14' text-anchor='middle' fill='%230a0d12'>YG</text></svg>">
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="contact.css">
 </head>
-
-<body>
-
-    <div class="matrix-bg"></div>
-    <div class="scanlines"></div>
+<body class="theme-contact">
 
     <div class="container">
 
-        <h1 class="title">> Contact</h1>
-        <p class="subtitle">Une question, un projet, une collaboration ?</p>
+        <h1 class="title">&gt; Contact</h1>
+        <p class="subtitle">Une question, un projet, une proposition de stage ?</p>
 
-        <form class="contact-form">
+        <div class="direct">
+            <button type="button" id="copy-mail" title="Copier l'adresse">
+                <small>&gt; Email (copier)</small>yanisgougaud0711@gmail.com
+            </button>
+            <a href="tel:+33767426082"><small>&gt; Téléphone</small>07 67 42 60 82</a>
+            <a href="https://github.com/yanisgougaud" target="_blank" rel="noopener"><small>&gt; GitHub</small>yanisgougaud</a>
+        </div>
+
+        <p class="dispo">&gt; Disponible pour un stage de 4 mois, du 9 avril au 24 juillet 2027, sur Roanne.</p>
+
+        <form class="contact-form" id="contact-form" novalidate>
 
             <div class="field">
-                <label>> Nom</label>
-                <input type="text" placeholder="Votre nom">
+                <label for="name">&gt; Nom</label>
+                <input id="name" type="text" placeholder="Votre nom" autocomplete="name">
+                <span class="error">Indiquez votre nom.</span>
             </div>
 
             <div class="field">
-                <label>> Email</label>
-                <input type="email" placeholder="Votre email">
+                <label for="email">&gt; Email</label>
+                <input id="email" type="email" placeholder="Votre email" autocomplete="email">
+                <span class="error">Indiquez un email valide.</span>
             </div>
 
             <div class="field">
-                <label>> Message</label>
-                <textarea placeholder="Votre message"></textarea>
+                <label for="subject">&gt; Sujet</label>
+                <select id="subject">
+                    <option>Proposition de stage</option>
+                    <option>Question sur un projet</option>
+                    <option>Collaboration</option>
+                    <option>Autre</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="message">&gt; Message</label>
+                <textarea id="message" placeholder="Votre message"></textarea>
+                <span class="error">Écrivez votre message.</span>
             </div>
 
             <button type="submit" class="send-btn">Envoyer</button>
+            <p class="form-msg" id="form-msg" aria-live="polite"></p>
 
         </form>
 
@@ -42,5 +65,46 @@
 
     </div>
 
+    <script>
+        (function () {
+            const MAIL = "yanisgougaud0711@gmail.com";
+            const msg = document.getElementById("form-msg");
+
+            /* Copier l'email */
+            document.getElementById("copy-mail").addEventListener("click", async () => {
+                try {
+                    await navigator.clipboard.writeText(MAIL);
+                    msg.textContent = "> Adresse email copiée ✔";
+                } catch (e) {
+                    window.location.href = "mailto:" + MAIL;
+                }
+            });
+
+            /* Le formulaire vérifie les champs puis ouvre la messagerie avec le mail pré-rempli */
+            const form = document.getElementById("contact-form");
+            form.addEventListener("submit", e => {
+                e.preventDefault();
+                const get = id => document.getElementById(id).value.trim();
+                let ok = true;
+                ["name", "email", "message"].forEach(id => {
+                    const v = get(id);
+                    const valid = v !== "" && (id !== "email" || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
+                    document.getElementById(id).closest(".field").classList.toggle("invalid", !valid);
+                    if (!valid) ok = false;
+                });
+                if (!ok) { msg.textContent = ""; return; }
+
+                const subject = `${get("subject")} — ${get("name")}`;
+                const body = `${get("message")}\n\n—\n${get("name")}\n${get("email")}`;
+                window.location.href = `mailto:${MAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                msg.textContent = "> Ouverture de votre messagerie...";
+            });
+
+            form.querySelectorAll("input, textarea").forEach(el =>
+                el.addEventListener("input", () => el.closest(".field").classList.remove("invalid"))
+            );
+        })();
+    </script>
+    <script src="../site.js"></script>
 </body>
 </html>

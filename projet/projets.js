@@ -1,70 +1,111 @@
-const projects = document.querySelectorAll(".project");
+/* =========================================================
+   Jeu de décryptage des projets (version d'origine améliorée)
+   - score requis propre à chaque projet (data-score)
+   - saisie du mot dans la page (plus de prompt / alert)
+   - un paquet raté fait perdre 1 point (au lieu de tout remettre à 0)
+   - à chaque ouverture de la page, il faut rejouer pour débloquer
+   ========================================================= */
 
-projects.forEach(project => {
+/* Les projets ne restent PAS débloqués : à chaque ouverture il faut rejouer.
+   (on efface aussi l'ancienne sauvegarde éventuelle) */
+try { localStorage.removeItem("portfolio-projets-decryptes"); } catch (e) {}
 
-    /* =========================
-       CONFIGURATION
-    ========================== */
-    const REQUIRED_SCORE = 2;
+const games = [];
+
+document.querySelectorAll(".project").forEach(project => {
+
+    /* ---------- Configuration ---------- */
+    const ID = project.dataset.id;
+    const REQUIRED_SCORE = parseInt(project.dataset.score, 10);
     const DECRYPT_WORD = project.dataset.word.toUpperCase();
 
-    /* =========================
-       ELEMENTS
-    ========================== */
-    const btn = project.querySelector(".btn-decrypt");
-    const bar = project.querySelector(".progress-fill");
+    /* ---------- Éléments ---------- */
+    const locked = project.querySelector(".locked");
+    const unlocked = project.querySelector(".unlocked");
     const status = project.querySelector(".status");
+    const bar = project.querySelector(".progress-fill");
     const gameArea = project.querySelector(".game-area");
-    const link = project.dataset.link;
+    const hint = project.querySelector(".game-hint");
+    const form = project.querySelector(".decrypt-form");
+    const input = form.querySelector("input");
+    const btn = form.querySelector(".btn-decrypt");
+    const msg = project.querySelector(".decrypt-msg");
 
     let score = 0;
     let gameActive = true;
+    let spawnTimer = null;
 
-    /* =========================
-       MOT EN FOND
-    ========================== */
+    /* ---------- Mot en fond ---------- */
     const wordOverlay = document.createElement("div");
     wordOverlay.className = "word-overlay";
     wordOverlay.textContent = DECRYPT_WORD;
-    project.appendChild(wordOverlay);
+    gameArea.appendChild(wordOverlay);
 
-    /* =========================
-       HEX RANDOM
-    ========================== */
     function randomHex() {
-        return "0x" + Math.floor(Math.random() * 6554)
-            .toString(16)
-            .toUpperCase();
+        return "0x" + Math.floor(Math.random() * 0xffff).toString(16).toUpperCase().padStart(4, "0");
     }
 
-    /* =========================
-       UI UPDATE
-    ========================== */
     function updateUI() {
         status.textContent = `Score : ${score} / ${REQUIRED_SCORE}`;
         bar.style.width = (score / REQUIRED_SCORE) * 100 + "%";
     }
 
-    updateUI();
+    /* ---------- Fin du jeu : firewall protégé ---------- */
+    function firewallProtected() {
+        gameActive = false;
+        clearInterval(spawnTimer);
+        gameArea.querySelectorAll(".packet").forEach(p => p.remove());
+        status.textContent = "FIREWALL PROTÉGÉ ✔";
+        wordOverlay.style.display = "flex";
+        input.disabled = false;
+        btn.disabled = false;
+        msg.style.color = "var(--muted)";
+        msg.textContent = "Le mot de décryptage est apparu dans la zone ci-dessus.";
+        input.focus({ preventScroll: true });
+    }
 
-    /* =========================
-       SPAWN PACKETS
-    ========================== */
-    const spawnInterval = setInterval(() => {
-        if (!gameActive) return;
+    /* ---------- Projet débloqué ---------- */
+    function showUnlocked(animate) {
+        gameActive = false;
+        clearInterval(spawnTimer);
+        project.classList.add("done");
+        status.textContent = "DÉCRYPTÉ ✔";
+        locked.hidden = true;
+        unlocked.hidden = false;
+        if (!animate) unlocked.style.animation = "none";
+    }
+
+    function decrypt() {
+        input.disabled = true;
+        btn.disabled = true;
+        msg.textContent = "";
+        status.textContent = "DÉCRYPTAGE...";
+        let progress = 0;
+        bar.style.width = "0%";
+        const anim = setInterval(() => {
+            progress += 10;
+            bar.style.width = progress + "%";
+            if (progress >= 100) {
+                clearInterval(anim);
+                setTimeout(() => showUnlocked(true), 250);
+            }
+        }, 90);
+    }
+
+    /* ---------- Paquets ---------- */
+    function spawnPacket() {
+        if (!gameActive || document.hidden) return;
+        if (hint) hint.style.display = "none";
 
         const packet = document.createElement("div");
         packet.className = "packet";
         packet.textContent = randomHex();
-
-        packet.style.left =
-            Math.random() * (gameArea.clientWidth - 55) + "px";
-        packet.style.top = "-70px";
-
+        packet.style.left = Math.random() * Math.max(0, gameArea.clientWidth - 62) + "px";
+        packet.style.top = "-60px";
         gameArea.appendChild(packet);
 
-        let pos = -70;
-        const speed = 2 + Math.random() * 1.2;
+        let pos = -60;
+        const speed = 1.8 + Math.random() * 1.2;
 
         const fall = setInterval(() => {
             pos += speed;
@@ -73,72 +114,53 @@ projects.forEach(project => {
             if (pos > gameArea.clientHeight) {
                 clearInterval(fall);
                 packet.remove();
-
-                if (gameActive) {
-                    score = 0;
+                if (gameActive && score > 0) {
+                    score--;
                     updateUI();
+                    project.classList.add("hit");
+                    setTimeout(() => project.classList.remove("hit"), 250);
                 }
             }
         }, 30);
 
-        /* =========================
-           CLICK PACKET
-        ========================== */
-        packet.addEventListener("click", () => {
+        packet.addEventListener("pointerdown", () => {
             if (!gameActive) return;
-
             clearInterval(fall);
             packet.style.pointerEvents = "none";
             packet.classList.add("explode");
-
             setTimeout(() => packet.remove(), 200);
-
             score++;
             updateUI();
-
-            if (score >= REQUIRED_SCORE) {
-                gameActive = false;
-                status.textContent = "FIREWALL PROTÉGÉ ✔";
-                btn.disabled = false;
-
-                gameArea
-                    .querySelectorAll(".packet")
-                    .forEach(p => p.remove());
-
-                wordOverlay.style.display = "flex";
-            }
+            if (score >= REQUIRED_SCORE) firewallProtected();
         });
+    }
 
-    }, 700);
-
-    /* =========================
-       BOUTON DECRYPT
-    ========================== */
-    btn.addEventListener("click", () => {
-        const typed = prompt("Tape le mot de décryptage :");
-
-        if (!typed || typed.toUpperCase() !== DECRYPT_WORD) {
-            alert("❌ Mot incorrect");
-            return;
+    /* ---------- Saisie du mot ---------- */
+    form.addEventListener("submit", e => {
+        e.preventDefault();
+        if (input.value.trim().toUpperCase() === DECRYPT_WORD) {
+            decrypt();
+        } else {
+            msg.style.color = "#ff6b6b";
+            msg.textContent = "❌ Mot incorrect — regarde le mot affiché en fond.";
+            form.classList.remove("shake");
+            void form.offsetWidth;
+            form.classList.add("shake");
+            input.select();
         }
-
-        btn.disabled = true;
-        status.textContent = "DÉCRYPTAGE...";
-
-        let progress = 0;
-
-        const decryptAnim = setInterval(() => {
-            progress += 10;
-            bar.style.width = progress + "%";
-
-            if (progress >= 100) {
-                clearInterval(decryptAnim);
-                status.textContent = "DÉCRYPTÉ ✔";
-
-                setTimeout(() => {
-                    window.location.href = link;
-                }, 600);
-            }
-        }, 120);
     });
+
+    /* ---------- Démarrage ---------- */
+    updateUI();
+    spawnTimer = setInterval(spawnPacket, 750);
+
+    games.push({ unlock: () => showUnlocked(true) });
 });
+
+/* Bouton « tout décrypter » pour les visiteurs pressés */
+document.getElementById("skip")?.addEventListener("click", () => {
+    games.forEach(g => g.unlock());
+});
+
+/* Retour arrière du navigateur : on recharge pour repartir de zéro */
+window.addEventListener("pageshow", e => { if (e.persisted) location.reload(); });

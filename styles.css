@@ -169,3 +169,35 @@ body {
     <polygon points='0,0 32,16 0,32' fill='#00ff9d'/>\
     </svg>") 0 16, pointer;
 }
+
+/* =========================================================
+   AJOUTS
+   ========================================================= */
+
+/* Transition vers les autres pages */
+.fade-out {
+    animation: fadeOutPage 0.5s forwards;
+}
+
+@keyframes fadeOutPage {
+    to { opacity: 0; filter: blur(2px); }
+}
+
+/* Petit écran : le texte et le menu restent lisibles */
+@media (max-width: 760px) {
+    .container { padding: 0 16px; }
+    .typewriter { font-size: 1.25rem; }
+    .status-line { font-size: 1.05rem; }
+    .menu-row { flex-wrap: wrap; }
+    .menu a { margin: 8px; padding: 12px 20px; font-size: 1.1rem; }
+    .main-btn { font-size: 1.2rem; padding: 14px 26px; }
+}
+
+/* « Chargement… » laisse sa place à « chargé avec succès » au même endroit */
+.status-line { display: grid; }
+#loading-text, #success-text { grid-area: 1 / 1; margin-top: 0; }
+#loading-text.hide { animation: fadeOut 0.5s forwards; }
+
+@media (max-width: 760px) {
+    .typewriter { font-size: 1rem; border-right-width: 2px; }
+}

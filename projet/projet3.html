@@ -3,45 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet 3 – Yanis</title>
-    <link rel="stylesheet" href="../projet/projet3.css">
+    <title>WorldQuest — Yanis Gougaud</title>
+    <meta name="description" content="Portfolio de Yanis Gougaud, étudiant en 3e année de BUT Informatique.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2334d399'/><text x='16' y='21.5' font-family='Arial' font-weight='700' font-size='14' text-anchor='middle' fill='%230a0d12'>YG</text></svg>">
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="projet.css">
 </head>
-<body>
+<body class="theme-projets">
 
-    <div class="matrix-bg"></div>
-    <div class="scanlines"></div>
 
-    <div class="container">
+    <main class="wrap">
 
-        <h1 class="title">> Projet 3 Décrypté</h1>
-        <p class="subtitle">Accès autorisé. Informations du projet :</p>
+        <section class="project-head">
+            <a href="projets.html" class="back-link">← Tous les projets</a><br><br>
+            <span class="eyebrow">Projet 03 · Jeu vidéo</span>
+            <h1 class="page-title">World<span class="hl">Quest</span></h1>
+            <p class="lead">Un RPG en pixel art mêlant exploration, quêtes et combats d'arts martiaux, développé sous Unity dans le cadre de notre projet tuteuré de 3<sup>e</sup> année (parcours Informatique Graphique).</p>
+            <dl class="meta">
+                <div><dt>Contexte</dt><dd>Projet tuteuré BUT 3</dd></div>
+                <div><dt>Équipe</dt><dd>4 étudiants</dd></div>
+                <div><dt>Statut</dt><dd>En cours (2026 – 2027)</dd></div>
+                <div><dt>Stack</dt><dd>Unity 6 · C# · GitHub · Jira</dd></div>
+            </dl>
+        </section>
 
-        <div class="project-details">
-            <p><strong>Nom :</strong> Outils & Scripts d’Automatisation</p>
+        <figure class="cover reveal">
+            <img src="images/wq-carte.jpg" alt="Vue d'ensemble de la carte de l'île dans l'éditeur Unity" data-zoom>
+            <figcaption>La carte de l'île dans l'éditeur Unity : village, marché, fermes, plage, lacs et sanctuaire de la montagne.</figcaption>
+        </figure>
 
-            <p><strong>Description :</strong>  
-                Développement d’outils en Python, C++ et JavaScript permettant  
-                d’automatiser des tâches répétitives, optimiser des workflows,  
-                générer des assets, analyser des données ou accélérer la création  
-                de prototypes pour des projets plus complexes.
-            </p>
+        <div class="content">
+            <article class="prose">
+                <section class="reveal">
+                    <h2>L'histoire</h2>
+                    <p>
+                        Le joueur incarne un étudiant pas vraiment passionné par ses études, qui découvre que
+                        son <strong>grand-père était un combattant reconnu</strong>. Il décide de suivre ses traces :
+                        se faire un nom pour obtenir une recommandation et intégrer un
+                        <strong>club d'arts martiaux</strong>.
+                    </p>
+                    <p>
+                        Le jeu mélange <strong>exploration</strong> d'une ville découpée en zones,
+                        <strong>quêtes</strong> auprès des habitants et <strong>combats en arène</strong>,
+                        avec plusieurs boss liés à l'histoire.
+                    </p>
+                </section>
 
-            <p><strong>Exemples :</strong></p>
-            <ul>
-                <li>Script Python pour générer automatiquement des fichiers JSON</li>
-                <li>Outil C++ pour analyser des logs et détecter des erreurs</li>
-                <li>Mini‑programme JS pour créer des assets pixel‑art procéduraux</li>
-            </ul>
+                <section class="reveal">
+                    <h2>Exploration &amp; quêtes</h2>
+                    <p>
+                        L'île du <strong>Coup de Pied Céleste</strong> est construite en tilemaps pixel art :
+                        village et marché autour de la fontaine, fermes, plage, port et sanctuaire de la montagne.
+                        Les PNJ dialoguent et confient des quêtes (15 à 20 prévues).
+                    </p>
+                    <div class="callout"><p><strong>Exemple :</strong> une tempête a détruit les ponts. Pour rejoindre le dojang, il faut
+                        réunir bûches, marteau et cordes en aidant les villageois, puis échanger un poisson de bronze chez
+                        l'antiquaire contre une torche… pour explorer la grotte.</p></div>
+                    <div class="gallery">
+                        <figure class="shot"><img src="images/wq-marche.jpg" alt="Le marché et la fontaine du village" data-zoom><figcaption><strong>Le marché</strong>Stands, fontaine et PNJ.</figcaption></figure>
+                        <figure class="shot"><img src="images/wq-sanctuaire.jpg" alt="Le sanctuaire et la grotte de la montagne" data-zoom><figcaption><strong>Le sanctuaire</strong>La grotte de la montagne.</figcaption></figure>
+                        <figure class="shot"><img src="images/wq-ferme.jpg" alt="La zone des fermes" data-zoom><figcaption><strong>Les fermes</strong>Granges, champs et enclos.</figcaption></figure>
+                    </div>
+                </section>
 
-            <p><strong>Objectif :</strong>  
-                Gagner du temps, améliorer la productivité et créer des outils  
-                réutilisables dans tes futurs projets.
-            </p>
+                <section class="reveal">
+                    <h2>Les intérieurs</h2>
+                    <p>
+                        Certains bâtiments sont accessibles : le joueur peut entrer dans le
+                        <strong>dojo</strong>, où il s'entraîne, ou dans les maisons des habitants
+                        qui lui confient des quêtes.
+                    </p>
+                    <div class="gallery" style="grid-template-columns: 1fr 1fr">
+                        <figure class="shot"><img src="images/wq-dojo.jpg" alt="Intérieur du dojo dans Unity" data-zoom style="aspect-ratio:auto"><figcaption><strong>Le dojo</strong>Tatami, mannequins d'entraînement, gong.</figcaption></figure>
+                        <figure class="shot"><img src="images/wq-maison.jpg" alt="Intérieur d'une maison du village dans Unity" data-zoom style="aspect-ratio:auto"><figcaption><strong>Une maison du village</strong>Chambre, salle de bain, salon et cuisine.</figcaption></figure>
+                    </div>
+                </section>
+
+                <section class="reveal">
+                    <h2>Le combat</h2>
+                    <p>
+                        Les affrontements se déroulent dans une arène dédiée. Le joueur peut
+                        <strong>attaquer, bloquer ou esquiver</strong> et utiliser des compétences
+                        (coup de poing, coup de pied, genou, uppercut), avec barres de vie et d'énergie.
+                        Le <strong>club d'arts martiaux</strong> choisi influencera le style de combat.
+                    </p>
+                    <div class="gallery" style="grid-template-columns: 1fr">
+                        <figure class="shot"><img src="images/wq-combat.jpg" alt="Prototype de l'interface de combat" data-zoom style="aspect-ratio:auto"><figcaption><strong>Prototype du combat</strong>Compétences, tours et barres de vie (interface en cours).</figcaption></figure>
+                    </div>
+                </section>
+
+                <section class="reveal">
+                    <h2>Objectifs techniques</h2>
+                    <ul>
+                        <li><strong>Carte et itinéraire</strong> : choisir une destination et afficher le chemin le plus court (pathfinding).</li>
+                        <li><strong>Combat</strong> : animations, hitboxes, IA des adversaires et boss.</li>
+                        <li><strong>Progression</strong> : niveaux, statistiques, inventaire, équipements, sauvegarde locale en JSON.</li>
+                        <li><strong>Accessibilité</strong> : palettes de couleurs adaptées et guide audio.</li>
+                        <li><strong>Numérique responsable</strong> : limiter les calculs inutiles (collisions, animations, PNJ).</li>
+                    </ul>
+                    <div class="callout"><p>Projet en cours de développement : la page évoluera avec l'avancement du jeu.</p></div>
+                </section>
+            </article>
+            <aside class="aside">
+                <div class="card reveal">
+                    <h3>Technologies</h3>
+                    <ul class="stack-list">
+                        <li><strong>Unity 6</strong><span>Moteur, tilemaps 2D, scènes</span></li>
+                        <li><strong>C#</strong><span>Gameplay, combat, quêtes, interface</span></li>
+                        <li><strong>Pixel art</strong><span>Décors, bâtiments, dojo</span></li>
+                        <li><strong>GitHub</strong><span>Travail à 4 et versions</span></li>
+                        <li><strong>Jira</strong><span>Organisation des tâches</span></li>
+                    </ul>
+                </div>
+            </aside>
         </div>
 
-        <a href="..projet/projets.html" class="back">Retour</a>
+        <nav class="project-nav" aria-label="Autres projets">
+            <a href="projet2.html" class="prev"><small>← Projet précédent</small><strong>Budget Familial</strong></a>
+            <span></span>
+        </nav>
 
-    </div>
+        <a href="projets.html" class="back">← Retour aux projets</a>
 
+    </main>
+
+    <script src="../site.js"></script>
+    <script src="lightbox.js"></script>
 </body>
 </html>
