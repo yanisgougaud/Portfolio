@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budget Familial — Yanis Gougaud</title>
+    <title>AgendaFamille — Yanis Gougaud</title>
     <meta name="description" content="Portfolio de Yanis Gougaud, étudiant en 3e année de BUT Informatique.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2334d399'/><text x='16' y='21.5' font-family='Arial' font-weight='700' font-size='14' text-anchor='middle' fill='%230a0d12'>YG</text></svg>">
     <link rel="stylesheet" href="../theme.css">
@@ -16,22 +16,22 @@
 
         <section class="project-head">
             <a href="projets.html" class="back-link">← Tous les projets</a><br><br>
-            <span class="eyebrow">Projet 02 · Mobile</span>
-            <h1 class="page-title">Budget <span class="hl">Familial</span></h1>
-            <p class="lead">Une application mobile pour suivre les dépenses et revenus du foyer, simplement et rapidement, avec des données qui restent sur le téléphone.</p>
+            <span class="eyebrow">Projet 02 · Mobile &amp; Cloud</span>
+            <h1 class="page-title">Agenda<span class="hl">Famille</span></h1>
+            <p class="lead">L'application qui organise toute la vie de famille : budget, agenda, tâches, courses, repas et documents, synchronisés en temps réel entre les téléphones de chaque membre.</p>
             <dl class="meta">
-                <div><dt>Contexte</dt><dd>Projet personnel</dd></div>
-                <div><dt>Plateforme</dt><dd>Android</dd></div>
-                <div><dt>Stack</dt><dd>Flutter · Dart</dd></div>
-                <div><dt>Données</dt><dd>100 % locales, sans connexion</dd></div>
+                <div><dt>Contexte</dt><dd>Projet personnel, utilisé par ma famille</dd></div>
+                <div><dt>Plateforme</dt><dd>Android · Web (iPhone, PC)</dd></div>
+                <div><dt>Stack</dt><dd>React Native · Expo · TypeScript · Supabase</dd></div>
+                <div><dt>Données</dt><dd>PostgreSQL en ligne, temps réel, sécurité RLS</dd></div>
             </dl>
         </section>
 
         <div class="phones-row reveal">
-            <figure><img src="images/dashbordavant.jpg" alt="Tableau de bord vide" data-zoom><figcaption>Tableau de bord</figcaption></figure>
-            <figure><img src="images/ajoutdepense.jpg" alt="Ajout d'une dépense" data-zoom><figcaption>Ajout d'une dépense</figcaption></figure>
-            <figure><img src="images/ajoutrevenu.jpg" alt="Ajout d'un revenu" data-zoom><figcaption>Ajout d'un revenu</figcaption></figure>
-            <figure><img src="images/dashbordcomplet.jpg" alt="Tableau de bord rempli" data-zoom><figcaption>Vue complète du budget</figcaption></figure>
+            <figure><img src="images/v2-accueil.jpg" alt="Écran d'accueil d'AgendaFamille" data-zoom><figcaption>Accueil · résumé du jour</figcaption></figure>
+            <figure><img src="images/v2-budget.jpg" alt="Écran Budget d'AgendaFamille" data-zoom><figcaption>Budget du mois</figcaption></figure>
+            <figure><img src="images/v2-agenda.jpg" alt="Agenda familial en vue mois" data-zoom><figcaption>Agenda familial</figcaption></figure>
+            <figure><img src="images/v2-familles.jpg" alt="Rejoindre une famille avec un code" data-zoom><figcaption>Rejoindre une famille</figcaption></figure>
         </div>
 
         <div class="content">
@@ -39,45 +39,78 @@
                 <section class="reveal">
                     <h2>Le projet</h2>
                     <p>
-                        Une <strong>application mobile de gestion du budget familial</strong>, développée en
-                        <strong>Flutter (Dart)</strong>. Elle permet de suivre toutes les dépenses et revenus
-                        du foyer, sans compte en ligne : tout fonctionne <strong>en local</strong>.
+                        AgendaFamille est la <strong>version 2</strong> de mon application <strong>Budget Familial</strong>.
+                        La première version, en Flutter, gardait les données sur un seul téléphone. Je l'ai
+                        entièrement repensée pour que <strong>chaque membre ait son propre compte</strong> et
+                        retrouve les mêmes informations, quel que soit son appareil.
                     </p>
                     <p>
-                        Seul l'administrateur du téléphone gère le budget. Les autres membres de la famille
-                        peuvent être ajoutés pour leur <strong>attribuer des dépenses</strong>, sans avoir
-                        accès à l'application.
+                        Une dépense ajoutée par un parent, un rendez-vous modifié, un article coché dans la liste
+                        de courses : tout apparaît <strong>instantanément</strong> sur les autres téléphones.
                     </p>
                 </section>
 
                 <section class="reveal">
                     <h2>Fonctionnalités</h2>
                     <ul>
-                        <li><strong>Ajout de dépenses et revenus</strong> : description, montant, catégorie et membre.</li>
-                        <li><strong>Tableau de bord</strong> : revenus, dépenses, solde et épargne en un coup d'œil.</li>
-                        <li><strong>Répartition par catégories</strong> : logement, enfants, transport, divers…</li>
-                        <li><strong>Historique</strong> des dernières dépenses avec date et détails.</li>
+                        <li><strong>Comptes et familles</strong> : inscription, plusieurs familles par compte, invitation par lien ou code à 6 caractères.</li>
+                        <li><strong>Rôles et permissions</strong> : administrateur, adulte, restreint, avec des droits réglables (voir / ajouter / modifier / supprimer) pour chaque partie de l'app.</li>
+                        <li><strong>Budget</strong> : dépenses et revenus par membre, catégories et enveloppes mensuelles, objectifs d'épargne, comparaison sur 6 mois.</li>
+                        <li><strong>Agenda</strong> : vues jour / semaine / mois, une couleur par membre, événements privés, partagés ou familiaux, anniversaires automatiques.</li>
+                        <li><strong>Organisation</strong> : tâches attribuées avec priorité et échéance, listes partagées en temps réel, planning des repas qui remplit la liste de courses, projets de vacances.</li>
+                        <li><strong>Documents</strong> : carte vitale, assurances, garanties… stockés dans un espace privé, visibles seulement par les membres autorisés.</li>
+                        <li><strong>Notifications</strong> : alertes push quand la famille ajoute quelque chose, et rappels de rendez-vous, de tâches et d'anniversaires.</li>
                     </ul>
+                </section>
+
+                <section class="reveal">
+                    <h2>Architecture</h2>
+                    <p>
+                        L'app mobile est écrite en <strong>React Native avec Expo et TypeScript</strong>. Les données
+                        sont dans une base <strong>PostgreSQL hébergée sur Supabase</strong>, qui gère aussi
+                        l'authentification, le stockage des fichiers et la <strong>synchronisation en temps réel</strong>.
+                    </p>
+                    <p>
+                        La sécurité est appliquée <strong>dans la base elle-même</strong> (Row Level Security) et non
+                        dans l'interface : chaque requête est vérifiée côté serveur selon la famille, le rôle et les
+                        droits de l'utilisateur. Des déclencheurs SQL alimentent le fil d'activité et envoient les
+                        notifications push via Firebase Cloud Messaging.
+                    </p>
+                    <p>
+                        L'app Android est compilée dans le cloud avec <strong>EAS Build</strong> et reçoit ses mises à
+                        jour <strong>sans réinstallation</strong> (EAS Update). La même base de code est publiée en
+                        version web pour les iPhone et les ordinateurs.
+                    </p>
                 </section>
 
                 <section class="reveal">
                     <h2>Interface &amp; expérience</h2>
                     <p>
-                        Chaque information clé a son <strong>code couleur</strong> (vert pour les revenus, rose
-                        pour les dépenses, bleu pour le solde) pour être lue sans effort. L'ajout passe par un
-                        <strong>bouton flottant</strong> qui ouvre un formulaire court : l'appli est pensée pour
-                        un usage quotidien, en quelques secondes.
+                        J'ai gardé l'identité de la V1 : <strong>codes couleur</strong> (vert pour les revenus, rose
+                        pour les dépenses, bleu pour le solde, ocre pour l'épargne), cartes arrondies et
+                        <strong>bouton flottant</strong> pour ajouter en quelques secondes. S'y ajoutent un
+                        <strong>mode sombre</strong> automatique et un écran d'accueil qui résume la journée.
                     </p>
-                    <div class="callout"><p><strong>Évolution prévue :</strong> donner à chaque membre son propre accès, avec synchronisation des données entre les appareils.</p></div>
+                    <div class="callout"><p><strong>De la V1 à la V2 :</strong> stockage local → base de données en ligne ; un seul utilisateur → comptes, rôles et permissions par membre ; Android seul → Android et web.</p></div>
                 </section>
             </article>
             <aside class="aside">
                 <div class="card reveal">
                     <h3>Technologies</h3>
                     <ul class="stack-list">
-                        <li><strong>Flutter / Dart</strong><span>Développement complet de l'application</span></li>
-                        <li><strong>Android Studio</strong><span>Compilation, tests et déploiement sur smartphone</span></li>
-                        <li><strong>Stockage local</strong><span>Aucune donnée envoyée sur internet</span></li>
+                        <li><strong>React Native / Expo</strong><span>Application Android et web, une seule base de code</span></li>
+                        <li><strong>TypeScript</strong><span>Code typé, plus sûr et plus maintenable</span></li>
+                        <li><strong>Supabase (PostgreSQL)</strong><span>Base de données, comptes, fichiers, temps réel</span></li>
+                        <li><strong>Row Level Security</strong><span>Droits vérifiés par la base de données</span></li>
+                        <li><strong>Firebase Cloud Messaging</strong><span>Notifications push Android</span></li>
+                        <li><strong>EAS Build &amp; Update</strong><span>Compilation cloud et mises à jour à distance</span></li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <h3>Version 1</h3>
+                    <ul class="stack-list">
+                        <li><strong>Flutter / Dart</strong><span>Première version, Android uniquement</span></li>
+                        <li><strong>Stockage local</strong><span>Données sur un seul téléphone</span></li>
                     </ul>
                 </div>
             </aside>
