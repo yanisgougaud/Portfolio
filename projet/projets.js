@@ -93,8 +93,16 @@ document.querySelectorAll(".project").forEach(project => {
     }
 
     /* ---------- Paquets ---------- */
+    const MAX_PACKETS = 3;          // jamais plus de 3 paquets à l'écran
+    let visible = false;            // le jeu ne tourne que si le projet est visible
+
+    new IntersectionObserver(entries => {
+        visible = entries[0].isIntersecting;
+    }, { threshold: 0.3 }).observe(gameArea);
+
     function spawnPacket() {
-        if (!gameActive || document.hidden) return;
+        if (!gameActive || document.hidden || !visible) return;
+        if (gameArea.querySelectorAll(".packet:not(.explode)").length >= MAX_PACKETS) return;
         if (hint) hint.style.display = "none";
 
         const packet = document.createElement("div");
@@ -105,14 +113,22 @@ document.querySelectorAll(".project").forEach(project => {
         gameArea.appendChild(packet);
 
         let pos = -60;
-        const speed = 1.8 + Math.random() * 1.2;
+        const speed = (1.8 + Math.random() * 1.2) / 30;   // px par milliseconde
+        let last = performance.now();
+        let stopped = false;
 
-        const fall = setInterval(() => {
-            pos += speed;
+        /* Chute basée sur le temps réel : pas d'accumulation ni d'accélération */
+        function step(now) {
+            if (stopped) return;
+            const dt = Math.min(now - last, 50);   // évite les sauts après un onglet en pause
+            last = now;
+            pos += speed * dt;
             packet.style.top = pos + "px";
 
+            if (!gameActive) { stopped = true; packet.remove(); return; }
+
             if (pos > gameArea.clientHeight) {
-                clearInterval(fall);
+                stopped = true;
                 packet.remove();
                 if (gameActive && score > 0) {
                     score--;
@@ -120,12 +136,15 @@ document.querySelectorAll(".project").forEach(project => {
                     project.classList.add("hit");
                     setTimeout(() => project.classList.remove("hit"), 250);
                 }
+                return;
             }
-        }, 30);
+            requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
 
         packet.addEventListener("pointerdown", () => {
             if (!gameActive) return;
-            clearInterval(fall);
+            stopped = true;
             packet.style.pointerEvents = "none";
             packet.classList.add("explode");
             setTimeout(() => packet.remove(), 200);
@@ -152,7 +171,7 @@ document.querySelectorAll(".project").forEach(project => {
 
     /* ---------- Démarrage ---------- */
     updateUI();
-    spawnTimer = setInterval(spawnPacket, 750);
+    spawnTimer = setInterval(spawnPacket, 900);
 
     games.push({ unlock: () => showUnlocked(true) });
 });
