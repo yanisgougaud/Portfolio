@@ -21,7 +21,11 @@
                 Neutralise les paquets corrompus pour débloquer chaque projet,
                 puis tape le mot de décryptage qui apparaît.
             </p>
-            <button class="skip" id="skip" type="button">Pas le temps ? Tout décrypter d'un coup →</button>
+            <button class="skip" id="skip" type="button" title="Débloquer les 3 projets directement">
+                <span class="skip-prompt">root@yanis:~$</span>
+                <span class="skip-cmd">sudo decrypt --all</span><span class="skip-caret" aria-hidden="true"></span>
+                <span class="skip-note">// accès direct aux 3 projets</span>
+            </button>
         </section>
 
         <div class="projects">

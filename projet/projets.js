@@ -158,8 +158,13 @@ document.querySelectorAll(".project").forEach(project => {
 });
 
 /* Bouton « tout décrypter » pour les visiteurs pressés */
-document.getElementById("skip")?.addEventListener("click", () => {
+document.getElementById("skip")?.addEventListener("click", e => {
+    const btn = e.currentTarget;
+    if (btn.classList.contains("done")) return;
     games.forEach(g => g.unlock());
+    btn.classList.add("done");
+    btn.querySelector(".skip-cmd").textContent = "accès root accordé";
+    btn.querySelector(".skip-note").textContent = "// 3 projets décryptés ✓";
 });
 
 /* Retour arrière du navigateur : on recharge pour repartir de zéro */
